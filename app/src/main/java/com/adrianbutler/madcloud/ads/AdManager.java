@@ -19,6 +19,7 @@ public class AdManager
 {
 	private static final String TAG = "AdManager";
 
+	//TODO implement the ability to change these
 	private static final String INTERSTITIAL_TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"; // use this while testing
 	private static final String INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4107669880849603/7026078398"; // ONLY USE IN PRODUCTION!
 	private final String CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID;
@@ -32,13 +33,13 @@ public class AdManager
 	private InterstitialAd interstitialAd;
 	private RewardedAd rewardedAd;
 
-	public AdManager(Context context, boolean production)
+	public AdManager(Context context, boolean inProduction)
 	{
 		this.context = context;
 
-		if (production) // if app is in production use product ad unit ids
+		if (inProduction) // if app is in inProduction use product ad unit ids
 		{
-			Log.i(TAG, "Using production ad unit ids");
+			Log.i(TAG, "Using inProduction ad unit ids");
 
 			CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID = INTERSTITIAL_AD_UNIT_ID;
 			CURRENTLY_USED_REWARDED_AD_UNIT_ID = REWARDED_AD_UNIT_ID;
