@@ -92,7 +92,7 @@ public class AdManager
 			Log.i(TAG, "Showing rewarded ad");
 			rewardedAd.show(activity, rewardItem ->
 			{
-				Log.i(TAG, "User earned the reward");
+				Log.i(TAG, "User finished the rewarded ad");
 				userEarnedRewardCallback.run();
 			});
 		} else
