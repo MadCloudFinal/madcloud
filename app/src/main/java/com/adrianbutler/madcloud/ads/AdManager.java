@@ -19,7 +19,6 @@ public class AdManager
 {
 	private static final String TAG = "AdManager";
 
-	//TODO implement the ability to change these
 	private static final String INTERSTITIAL_TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"; // use this while testing
 	private static final String INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4107669880849603/7026078398"; // ONLY USE IN PRODUCTION!
 	private final String CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID;
