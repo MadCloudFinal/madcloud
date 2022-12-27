@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
@@ -35,14 +36,37 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        Button playButton = findViewById(R.id.soundFXBtn);
+        playButton.setOnClickListener(onPlayButtonClickListener);
+        setupTitleButtons();
+
         mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
         mSoundPool.load(this, R.raw.thunder, 1);
 
 
-        Button playButton = findViewById(R.id.soundFXBtn);
-        Button pauseButton = findViewById(R.id.soundFXBtn2);
-        playButton.setOnClickListener(onPlayButtonClickListener);
-        pauseButton.setOnClickListener(onPlay2);
+    }
+
+    public void setupTitleButtons() {
+        Button goToGameBtn = this.findViewById(R.id.TitlePlayBtn);
+        goToGameBtn.setOnClickListener(view -> {
+            Intent goToGame = new Intent(this, MainActivity.class);
+            startActivity(goToGame);
+        });
+
+        Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
+        goToStatsBtn.setOnClickListener(view -> {
+            Intent goToStats = new Intent(this, MainActivity.class);
+            startActivity(goToStats);
+        });
+
+        Button quitBtn = findViewById(R.id.TitleQuitBtn);
+        quitBtn.setOnClickListener(view -> {
+            Intent quit = new Intent(this, MainActivity.class);
+            Toast.makeText(this, "Quitting!", Toast.LENGTH_SHORT).show();
+            startActivity(quit);
+        });
+
+
     }
 
     Button.OnClickListener onPlayButtonClickListener
