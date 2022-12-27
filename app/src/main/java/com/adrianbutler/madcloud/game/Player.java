@@ -3,6 +3,7 @@ package com.adrianbutler.madcloud.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.provider.ContactsContract;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import com.adrianbutler.madcloud.R;
 public class Player {
 
     private Bitmap bitmap;
+    Rect hitbox;
 
     private Bitmap[] playerAnimation = new Bitmap[5];
 
@@ -52,7 +54,7 @@ public class Player {
 
         maxY = screenY - playerAnimation[0].getHeight();
         minY = 0;
-
+        hitbox = new Rect(x,y,bitmap.getWidth(),bitmap.getHeight());
         floating = false;
     }
 
@@ -86,11 +88,20 @@ public class Player {
         if(y > maxY){
             y = maxY;
         }
+
+        hitbox.top = y;
+        hitbox.bottom = y + bitmap.getHeight();
+        hitbox.left = x;
+        hitbox.right = x + bitmap.getWidth();
     }
 
 
     public Bitmap getBitmap() {
         return bitmap;
+    }
+
+    public Rect getHitbox() {
+        return hitbox;
     }
 
     public int getX() {

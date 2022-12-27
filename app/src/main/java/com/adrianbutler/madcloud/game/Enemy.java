@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Display;
 
@@ -21,6 +22,7 @@ public class Enemy{
     int speed = 1;
     int maxY, minY;
     int maxX, minX;
+    Rect hitbox;
 
     public Enemy(Context context, int screenX, int screenY)
     {
@@ -34,6 +36,8 @@ public class Enemy{
         speed = spawner.nextInt(7) + 10;
         x = screenX;
         y = spawner.nextInt(maxY) - enemyBit.getHeight();
+
+        hitbox = new Rect(x, y, enemyBit.getWidth(), enemyBit.getHeight());
     }
 
     public void update()
@@ -46,6 +50,10 @@ public class Enemy{
             x = maxX;
             y = spawner.nextInt(maxY) - (enemyBit.getHeight() * 2);
         }
+        hitbox.left = x;
+        hitbox.top = y;
+        hitbox.right = x + enemyBit.getWidth();
+        hitbox.bottom = y + enemyBit.getHeight();
     }
 
     public Bitmap getEnemyBit() {
@@ -58,6 +66,14 @@ public class Enemy{
 
     public int getY() {
         return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public Rect getHitbox() {
+        return hitbox;
     }
 
     public int getSpeed() {

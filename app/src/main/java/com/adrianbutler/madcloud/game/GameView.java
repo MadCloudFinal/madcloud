@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -50,6 +51,10 @@ public class GameView extends SurfaceView implements Runnable {
             for(int i = 0; i < difficuty; i++)
             {
                 birds[i].update();
+                if(Rect.intersects(player.getHitbox(), birds[i].getHitbox()))
+                {
+                    birds[i].setX(-200);
+                }
             }
 
             //updates the frame
@@ -65,6 +70,7 @@ public class GameView extends SurfaceView implements Runnable {
     private void update(){
         //Update the players position
         player.update();
+
     }
 
     private void draw(){
