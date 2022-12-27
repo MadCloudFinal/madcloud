@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Madcloud"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4107669880849603~2843290804" />
         <activity
             android:name=".background"
             android:exported="true"
@@ -29,6 +32,14 @@
             android:name=".MainActivity"
             android:exported="true">
 
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+        </activity>
+
+
+        <activity android:name=".game.GameActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
