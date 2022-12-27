@@ -1,0 +1,8 @@
+
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected" android:oneshot="false">
+    <item android:drawable="@drawable/raven_0001" android:duration="500" />
+    <item android:drawable="@drawable/raven_black0006" android:duration="500" />
+    <item android:drawable="@drawable/raven_black0009" android:duration="500" />
+<!--    <item android:drawable="@drawable/ani1" android:duration="500" />-->
+</animation-list>

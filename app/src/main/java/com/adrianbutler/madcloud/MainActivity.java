@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.adrianbutler.madcloud.game.GameActivity;
@@ -52,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
         mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
         mSoundPool.load(this, R.raw.thunder, 1);
+        ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
+        ravenFly.setBackgroundResource(R.drawable.fly);
+        AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
+        //Start the animation:
+        animation.start();
     }
 
     @Override

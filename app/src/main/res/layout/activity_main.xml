@@ -32,6 +32,10 @@
         app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent" />
 
+<!--    <ImageView -->
+<!--        android:animation="@drawable/fly" -->
+<!--        />-->
+
     <Button
         android:id="@+id/TitlePlayBtn"
         android:layout_width="wrap_content"
@@ -47,7 +51,7 @@
     <Button
         android:id="@+id/TitleQuitBtn"
         android:background="@drawable/custom_button"
-        android:enabled="false"
+        android:enabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
@@ -67,6 +71,17 @@
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitlePlayBtn" />
+
+    <ImageView
+        android:id="@+id/flyRaven"
+        android:layout_width="250px"
+        android:animation="@drawable/fly"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fly"
+        tools:layout_editor_absoluteY="248dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
