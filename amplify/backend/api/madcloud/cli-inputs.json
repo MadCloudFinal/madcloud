@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "madcloud",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 20,
+      "apiKeyExpirationDate": "2023-01-16T19:13:31.994Z",
+      "keyDescription": ""
+    }
+  }
+}
