@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 import com.adrianbutler.madcloud.game.GameActivity;
+import android.media.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
     private SoundPool mSoundPool;
@@ -64,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button quitBtn = findViewById(R.id.TitleQuitBtn);
         quitBtn.setOnClickListener(view -> {
-            Intent quit = new Intent(this, MainActivity.class);
             Toast.makeText(this, "Quitting!", Toast.LENGTH_SHORT).show();
-            startActivity(quit);
+            finishAndRemoveTask();
         });
     }
 
