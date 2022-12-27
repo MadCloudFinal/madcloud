@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,6 +15,8 @@ public class GameView extends SurfaceView implements Runnable {
     volatile boolean isPlaying;
 
     private Player player;
+    Enemy[] birds;
+    int difficuty = 5;
 
 
     //Drawing objects
@@ -28,16 +31,31 @@ public class GameView extends SurfaceView implements Runnable {
         super(context);
 
         player = new Player(context, screenX, screenY);
+        birds = new Enemy[difficuty];
 
         // these are our initialized drawing objects
         surfaceHolder = getHolder();
         paint = new Paint();
+
+        for(int i = 0; i < difficuty; i++)
+        {
+            birds[i] = new Enemy(context, screenX, screenY);
+        }
     }
 
     @Override
     public void run() {
         //this is our game loop
         while(isPlaying){
+
+            for(int i = 0; i < difficuty; i++)
+            {
+                birds[i].update();
+                if(Rect.intersects(player.getHitbox(), birds[i].getHitbox()))
+                {
+                    birds[i].setX(-200);
+                }
+            }
 
             //updates the frame
             update();
@@ -52,24 +70,39 @@ public class GameView extends SurfaceView implements Runnable {
     private void update(){
         //Update the players position
         player.update();
+
     }
 
     private void draw(){
         // checking if the drawing surface is valid
         if(surfaceHolder.getSurface().isValid()){
 
+
+            //Draw the player
+
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
 
             // sets background color for canvas
-            canvas.drawColor(Color.BLACK);
+            canvas.drawColor(Color.WHITE);
 
-            //Draw the player
             canvas.drawBitmap(player.getBitmap(), player.getX(), player.getY(), paint);
 
-            //unlocks the canvas
-            surfaceHolder.unlockCanvasAndPost(canvas);
-        }
+            for(int i = 0; i < difficuty; i++)
+            {
+                canvas.drawBitmap( birds[i].getEnemyBit(), birds[i].getX(), birds[i].getY(), paint);
+            }
+
+                //unlocks the canvas
+                surfaceHolder.unlockCanvasAndPost(canvas);
+            }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+
+
     }
 
     private  void control(){

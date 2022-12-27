@@ -10,6 +10,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
                 Toast.LENGTH_LONG).show();
+		Intent background = new Intent(MainActivity.this, com.adrianbutler.madcloud.background.class);
 
 //        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
 
