@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-//title sound/music
+        //title sound/music
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
         mediaPlayer.start();
 
@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
         setupTitleButtons();
 
         mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-        mSoundPool.load(this, R.raw.thunder, 1);
+        mSoundPool.load(this, R.raw.voron, 1);
+
+        //raven
         ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
         ravenFly.setBackgroundResource(R.drawable.fly);
         AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
@@ -107,35 +109,4 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     };
-
-
-    private void setupSounds() {
-        AudioAttributes audioAttributes = new AudioAttributes
-                .Builder()
-                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
-        soundPool = new SoundPool
-                .Builder()
-                .setMaxStreams(6)
-                .setAudioAttributes(audioAttributes)
-                .build();
-        soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-        int keyA = soundPool.load(this, R.raw.thunder, 1);
-//        int keyB = soundPool.load(this, R.raw.new_key02, 1);
-//        int keyC = soundPool.load(this, R.raw.new_key03, 1);
-//        int keyD = soundPool.load(this, R.raw.new_key04, 1);
-//        int keyE = soundPool.load(this, R.raw.new_key05, 1);
-//        int bgSong = soundPool.load(this,R.raw.flowing_rocks_short,1);
-        soundEffectsArray = new int[]{keyA};
-
-        soundPool.play(keyA, 1, (float) 0.65, 1, 0, 1);
-        Toast.makeText(getApplicationContext(),
-                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-                Toast.LENGTH_LONG).show();
-        Intent background = new Intent(MainActivity.this, com.adrianbutler.madcloud.background.class);
-
-//        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
-
-    }
 }

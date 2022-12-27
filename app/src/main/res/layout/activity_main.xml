@@ -75,12 +75,13 @@
     <ImageView
         android:id="@+id/flyRaven"
         android:layout_width="250px"
+        android:layout_height="280px"
         android:animation="@drawable/fly"
-        android:layout_height="wrap_content"
+
 
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/fly"
+
         tools:layout_editor_absoluteY="248dp" />
 
 
