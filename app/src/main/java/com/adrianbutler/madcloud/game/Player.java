@@ -3,14 +3,23 @@ package com.adrianbutler.madcloud.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
+import android.provider.ContactsContract;
+import android.widget.ImageView;
 
 import com.adrianbutler.madcloud.R;
 
 public class Player {
 
     private Bitmap bitmap;
-    AnimationDrawable testPlayer;
+    Rect hitbox;
+
+    private Bitmap[] playerAnimation = new Bitmap[5];
+
+    public Bitmap[] getPlayerAnimation() {
+        return playerAnimation;
+    }
 
     private int x;
     private int y;
@@ -18,6 +27,7 @@ public class Player {
     private int minY;
 
     private int speed = 0;
+
     // limit the speed
     private final int MIN_SPEED = 1;
     private final int MAX_SPEED = 20;
@@ -36,12 +46,15 @@ public class Player {
 
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud);
 
-//        testPlayer = sprite.createAnimation(1);
+        playerAnimation[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud);
+        playerAnimation[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_2);
+        playerAnimation[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_3);
+        playerAnimation[3] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_4);
+        playerAnimation[4] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_5);
 
-
-        maxY = screenY - bitmap.getHeight();
+        maxY = screenY - playerAnimation[0].getHeight();
         minY = 0;
-
+        hitbox = new Rect(x,y,bitmap.getWidth(),bitmap.getHeight());
         floating = false;
     }
 
@@ -75,14 +88,20 @@ public class Player {
         if(y > maxY){
             y = maxY;
         }
+
+        hitbox.top = y;
+        hitbox.bottom = y + bitmap.getHeight();
+        hitbox.left = x;
+        hitbox.right = x + bitmap.getWidth();
     }
 
-    public AnimationDrawable getTestPlayer() {
-        return testPlayer;
-    }
 
     public Bitmap getBitmap() {
         return bitmap;
+    }
+
+    public Rect getHitbox() {
+        return hitbox;
     }
 
     public int getX() {
