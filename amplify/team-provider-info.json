@@ -10,6 +10,11 @@
       "StackName": "amplify-madcloud-dev-130032",
       "StackId": "arn:aws:cloudformation:us-east-2:262108242477:stack/amplify-madcloud-dev-130032/bdbcaf70-8618-11ed-b0f7-02ebfc419d8a",
       "AmplifyAppId": "dyskp0ivi0rtv"
+    },
+    "categories": {
+      "api": {
+        "madcloud": {}
+      }
     }
   }
 }
