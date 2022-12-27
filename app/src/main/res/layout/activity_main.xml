@@ -46,6 +46,8 @@
 
     <Button
         android:id="@+id/TitleQuitBtn"
+        android:background="@drawable/custom_button"
+        android:enabled="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"

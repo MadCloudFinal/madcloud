@@ -18,7 +18,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.adrianbutler.madcloud.game.GameActivity;
+
 import android.media.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int mStreamId;
 
     private SoundPool soundPool;
+    MediaPlayer mediaPlayer;
     private int[] soundEffectsArray;
 
     @Override
@@ -38,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+//title sound/music
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
+        mediaPlayer.start();
+
 
         Button playButton = findViewById(R.id.soundFXBtn);
         playButton.setOnClickListener(onPlayButtonClickListener);
@@ -45,17 +52,21 @@ public class MainActivity extends AppCompatActivity {
 
         mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
         mSoundPool.load(this, R.raw.thunder, 1);
+    }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
     public void setupTitleButtons() {
-
-            Button goToGameBtn = this.findViewById(R.id.TitlePlayBtn);
-            goToGameBtn.setOnClickListener(view -> {
-                Intent goToGame = new Intent(this, GameActivity.class);
-                startActivity(goToGame);
-            });
+        Button goToGameBtn = this.findViewById(R.id.TitlePlayBtn);
+        goToGameBtn.setOnClickListener(view -> {
+            Intent goToGame = new Intent(this, GameActivity.class);
+            startActivity(goToGame);
+        });
 
         Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
         goToStatsBtn.setOnClickListener(view -> {
@@ -116,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
                 Toast.LENGTH_LONG).show();
-		Intent background = new Intent(MainActivity.this, com.adrianbutler.madcloud.background.class);
+        Intent background = new Intent(MainActivity.this, com.adrianbutler.madcloud.background.class);
 
 //        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
 
