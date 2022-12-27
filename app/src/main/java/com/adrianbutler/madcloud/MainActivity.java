@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+import com.adrianbutler.madcloud.game.GameActivity;
 
 public class MainActivity extends AppCompatActivity {
     private SoundPool mSoundPool;
@@ -47,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupTitleButtons() {
-        Button goToGameBtn = this.findViewById(R.id.TitlePlayBtn);
-        goToGameBtn.setOnClickListener(view -> {
-            Intent goToGame = new Intent(this, MainActivity.class);
-            startActivity(goToGame);
-        });
+
+            Button goToGameBtn = this.findViewById(R.id.TitlePlayBtn);
+            goToGameBtn.setOnClickListener(view -> {
+                Intent goToGame = new Intent(this, GameActivity.class);
+                startActivity(goToGame);
+            });
 
         Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
         goToStatsBtn.setOnClickListener(view -> {
@@ -65,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Quitting!", Toast.LENGTH_SHORT).show();
             startActivity(quit);
         });
-
-
     }
 
     Button.OnClickListener onPlayButtonClickListener
@@ -90,13 +90,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    Button.OnClickListener onPlay2
-            = new Button.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            setupSounds();
-        }
-    };
 
     private void setupSounds() {
         AudioAttributes audioAttributes = new AudioAttributes
@@ -118,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 //        int bgSong = soundPool.load(this,R.raw.flowing_rocks_short,1);
         soundEffectsArray = new int[]{keyA};
 
-        soundPool.play(keyA, 1, (float) 0.65,1,0, 1);
+        soundPool.play(keyA, 1, (float) 0.65, 1, 0, 1);
         Toast.makeText(getApplicationContext(),
                 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
                 Toast.LENGTH_LONG).show();
