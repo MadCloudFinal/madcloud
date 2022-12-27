@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-madcloud-dev-130032-authRole",
-      "UnauthRoleArn": "arn:aws:iam::262108242477:role/amplify-madcloud-dev-130032-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::262108242477:role/amplify-madcloud-dev-130032-authRole",
+      "AuthRoleName": "amplify-madcloud-dev-163301-authRole",
+      "UnauthRoleArn": "arn:aws:iam::262108242477:role/amplify-madcloud-dev-163301-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::262108242477:role/amplify-madcloud-dev-163301-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-madcloud-dev-130032-deployment",
-      "UnauthRoleName": "amplify-madcloud-dev-130032-unauthRole",
-      "StackName": "amplify-madcloud-dev-130032",
-      "StackId": "arn:aws:cloudformation:us-east-2:262108242477:stack/amplify-madcloud-dev-130032/bdbcaf70-8618-11ed-b0f7-02ebfc419d8a",
-      "AmplifyAppId": "dyskp0ivi0rtv"
+      "DeploymentBucketName": "amplify-madcloud-dev-163301-deployment",
+      "UnauthRoleName": "amplify-madcloud-dev-163301-unauthRole",
+      "StackName": "amplify-madcloud-dev-163301",
+      "StackId": "arn:aws:cloudformation:us-east-2:262108242477:stack/amplify-madcloud-dev-163301/6cd88ac0-8636-11ed-a953-022b29c4446c",
+      "AmplifyAppId": "d2qs0z5dpfmsjq"
     },
     "categories": {
       "api": {

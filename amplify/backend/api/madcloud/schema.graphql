@@ -1,4 +1,4 @@
-type User @model {
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String!
   highScore: Int
