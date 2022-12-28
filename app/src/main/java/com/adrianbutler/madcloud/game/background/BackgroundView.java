@@ -23,7 +23,9 @@ public class BackgroundView extends SurfaceView {
 
     public BackgroundView(Context context) {
         super(context);
-        sky = BitmapFactory.decodeResource(getResources(), R.drawable.sky_lightened);
+        setLayerType(LAYER_TYPE_HARDWARE, null);
+
+sky=BitmapFactory.decodeResource(getResources(),R.drawable.sky_lightened);
         cloudBg = BitmapFactory.decodeResource(getResources(), R.drawable.clouds_bg);
         loneCloud = BitmapFactory.decodeResource(getResources(), R.drawable.cloud_lonely);
         mountain = BitmapFactory.decodeResource(getResources(), R.drawable.glacial_mountains_lightened);
@@ -110,7 +112,7 @@ public class BackgroundView extends SurfaceView {
         if (cloudMg1X < screenWidth - newWidth) {
             canvas.drawBitmap(cloudMg1, cloudMg1X + newWidth, 0, null);
         }
-        handler.postDelayed(runnable,UPDATE_MILLIS);
+        invalidate();
     }
 
     public Bitmap getSky() {
@@ -121,3 +123,4 @@ public class BackgroundView extends SurfaceView {
         return mountain;
     }
 }
+

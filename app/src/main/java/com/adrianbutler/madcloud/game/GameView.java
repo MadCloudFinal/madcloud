@@ -39,6 +39,9 @@ public class GameView extends SurfaceView implements Runnable {
 
     public GameView(Context context, int screenX, int screenY){
         super(context);
+        setLayerType(LAYER_TYPE_HARDWARE, null);
+
+        System.out.println(isHardwareAccelerated());
 
         score = 0;
 
@@ -51,6 +54,7 @@ public class GameView extends SurfaceView implements Runnable {
         surfaceHolder = getHolder();
         paint = new Paint();
         backgroundView = new BackgroundView(context);
+
 
 
         for(int i = 0; i < (difficulty - 2); i++){
@@ -68,7 +72,6 @@ public class GameView extends SurfaceView implements Runnable {
         //this is our game loop
         while(isPlaying){
 
-
             for(int i = 0; i < difficulty; i++)
             {
                 birds[i].update();
@@ -77,10 +80,8 @@ public class GameView extends SurfaceView implements Runnable {
                     birds[i].setX(-300);
                 }
             }
-
             //updates the frame
             update();
-
             // draws the frame
             draw();
             control();
@@ -106,11 +107,10 @@ public class GameView extends SurfaceView implements Runnable {
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
 
-            canvas.drawColor(Color.WHITE);
 
-//            backgroundView.draw(canvas);
-            canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
-            canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
+           backgroundView.draw(canvas);
+//             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
+//             canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
 
             paint.setTextSize(40);
             canvas.drawText("Score - " + score, 100,50, paint);
@@ -137,7 +137,6 @@ public class GameView extends SurfaceView implements Runnable {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-
 
     }
 
