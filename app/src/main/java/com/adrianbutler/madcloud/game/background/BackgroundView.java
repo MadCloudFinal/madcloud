@@ -1,3 +1,4 @@
+
 package com.adrianbutler.madcloud.game.background;
 
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.view.View;
 import com.adrianbutler.madcloud.R;
 
 public class BackgroundView extends SurfaceView {
+
     int screenWidth, screenHeight, newWidth, newHeight;
     int skyX = 0,loneCloudX = 0,cloudBgX = 0, mountainX = 0, cloudMg1X = 0, cloudMg2X = 0, cloudMg3X = 0;
     Bitmap sky,cloudBg,loneCloud, mountain, cloudMg1, cloudMg2, cloudMg3;

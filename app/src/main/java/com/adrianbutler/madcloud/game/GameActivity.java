@@ -1,20 +1,14 @@
 package com.adrianbutler.madcloud.game;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Canvas;
 import android.graphics.Point;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
 
 public class GameActivity extends AppCompatActivity {
