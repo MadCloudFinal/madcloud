@@ -27,7 +27,7 @@ public final class User implements Model {
   public static final QueryField HIGH_SCORE = field("User", "highScore");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String username;
-  private final @ModelField(targetType="Int") Integer highScore;
+  private final @ModelField(targetType="Int", isRequired = true) Integer highScore;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String resolveIdentifier() {
@@ -127,18 +127,22 @@ public final class User implements Model {
       highScore);
   }
   public interface UsernameStep {
-    BuildStep username(String username);
+    HighScoreStep username(String username);
+  }
+  
+
+  public interface HighScoreStep {
+    BuildStep highScore(Integer highScore);
   }
   
 
   public interface BuildStep {
     User build();
     BuildStep id(String id);
-    BuildStep highScore(Integer highScore);
   }
   
 
-  public static class Builder implements UsernameStep, BuildStep {
+  public static class Builder implements UsernameStep, HighScoreStep, BuildStep {
     private String id;
     private String username;
     private Integer highScore;
@@ -153,7 +157,7 @@ public final class User implements Model {
     }
     
     @Override
-     public BuildStep username(String username) {
+     public HighScoreStep username(String username) {
         Objects.requireNonNull(username);
         this.username = username;
         return this;
@@ -161,6 +165,7 @@ public final class User implements Model {
     
     @Override
      public BuildStep highScore(Integer highScore) {
+        Objects.requireNonNull(highScore);
         this.highScore = highScore;
         return this;
     }
