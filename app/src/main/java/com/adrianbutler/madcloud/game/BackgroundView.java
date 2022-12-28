@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud;
+package com.adrianbutler.madcloud.game;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.graphics.Point;
 import android.os.Handler;
 import android.view.Display;
 import android.view.View;
+
+import com.adrianbutler.madcloud.R;
 
 public class BackgroundView extends View {
     int screenWidth, screenHeight, newWidth, newHeight;
