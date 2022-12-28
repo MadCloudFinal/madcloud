@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-//title sound/music
+        //title sound/music
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
         mediaPlayer.start();
 
@@ -48,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         setupTitleButtons();
 
         mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-        mSoundPool.load(this, R.raw.thunder, 1);
+        mSoundPool.load(this, R.raw.voron, 1);
+
+        //raven
         ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
         ravenFly.setBackgroundResource(R.drawable.fly);
         AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+
     private void setupSounds() {
         AudioAttributes audioAttributes = new AudioAttributes
                 .Builder()
@@ -134,4 +137,5 @@ public class MainActivity extends AppCompatActivity {
 //        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
 
     }
+
 }
