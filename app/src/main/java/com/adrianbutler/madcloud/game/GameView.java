@@ -9,14 +9,21 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.adrianbutler.madcloud.game.background.BackgroundView;
+
 public class GameView extends SurfaceView implements Runnable {
+
+    int score;
 
     // this checks if the game is being played
     volatile boolean isPlaying;
+    int uiSize = 50;
 
     private Player player;
     Enemy[] birds;
-    int difficuty = 5;
+    int difficulty = 5;
+
+    Lightning[] lightning;
 
 
     //Drawing objects
@@ -24,20 +31,33 @@ public class GameView extends SurfaceView implements Runnable {
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
 
+    BackgroundView backgroundView;
+
+
     // this will track the gameThread
     private Thread gameThread = null;
 
     public GameView(Context context, int screenX, int screenY){
         super(context);
 
+        score = 0;
+
         player = new Player(context, screenX, screenY);
-        birds = new Enemy[difficuty];
+        birds = new Enemy[difficulty];
+        lightning = new Lightning[difficulty - 2];
+
 
         // these are our initialized drawing objects
         surfaceHolder = getHolder();
         paint = new Paint();
+        backgroundView = new BackgroundView(context);
 
-        for(int i = 0; i < difficuty; i++)
+
+        for(int i = 0; i < (difficulty - 2); i++){
+            lightning[i] = new Lightning(context,screenX,screenY);
+        }
+
+        for(int i = 0; i < difficulty; i++)
         {
             birds[i] = new Enemy(context, screenX, screenY);
         }
@@ -48,12 +68,13 @@ public class GameView extends SurfaceView implements Runnable {
         //this is our game loop
         while(isPlaying){
 
-            for(int i = 0; i < difficuty; i++)
+
+            for(int i = 0; i < difficulty; i++)
             {
                 birds[i].update();
                 if(Rect.intersects(player.getHitbox(), birds[i].getHitbox()))
                 {
-                    birds[i].setX(-200);
+                    birds[i].setX(-300);
                 }
             }
 
@@ -62,7 +83,6 @@ public class GameView extends SurfaceView implements Runnable {
 
             // draws the frame
             draw();
-
             control();
         }
     }
@@ -70,33 +90,49 @@ public class GameView extends SurfaceView implements Runnable {
     private void update(){
         //Update the players position
         player.update();
-
+        for (int i = 0; i < (difficulty -2); i++){
+            lightning[i].update();
+            if(Rect.intersects(player.getHitbox(), lightning[i].getHitbox())){
+                score += 5;
+                lightning[i].setX(-200);
+            }
+        }
     }
 
     private void draw(){
+
         // checking if the drawing surface is valid
         if(surfaceHolder.getSurface().isValid()){
-
-
-            //Draw the player
-
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
 
-            // sets background color for canvas
             canvas.drawColor(Color.WHITE);
+
+//            backgroundView.draw(canvas);
+            canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
+            canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
+
+            paint.setTextSize(40);
+            canvas.drawText("Score - " + score, 100,50, paint);
 
             canvas.drawBitmap(player.getBitmap(), player.getX(), player.getY(), paint);
 
-            for(int i = 0; i < difficuty; i++)
+            for(int i = 0; i < difficulty; i++)
             {
                 canvas.drawBitmap( birds[i].getEnemyBit(), birds[i].getX(), birds[i].getY(), paint);
             }
-
-                //unlocks the canvas
-                surfaceHolder.unlockCanvasAndPost(canvas);
+            for(int i = 0; i < (difficulty - 2); i++)
+            {
+                canvas.drawBitmap( lightning[i].getLightningBit(), lightning[i].getX(), lightning[i].getY(), paint);
             }
+
+            //unlocks the canvas
+            surfaceHolder.unlockCanvasAndPost(canvas);
+        }
+
     }
+
+
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -108,6 +144,7 @@ public class GameView extends SurfaceView implements Runnable {
     private  void control(){
         try {
             gameThread.sleep(17);
+
         }catch (InterruptedException event){
             event.printStackTrace();
         }
@@ -119,6 +156,7 @@ public class GameView extends SurfaceView implements Runnable {
         try {
             //stop thread logic
             gameThread.join();
+
         }catch (InterruptedException event){
 
         }

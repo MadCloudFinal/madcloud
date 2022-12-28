@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud;
+package com.adrianbutler.madcloud.game.background;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,15 +8,18 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Handler;
 import android.view.Display;
+import android.view.SurfaceView;
 import android.view.View;
 
-public class BackgroundView extends View {
+import com.adrianbutler.madcloud.R;
+
+public class BackgroundView extends SurfaceView {
     int screenWidth, screenHeight, newWidth, newHeight;
     int skyX = 0,loneCloudX = 0,cloudBgX = 0, mountainX = 0, cloudMg1X = 0, cloudMg2X = 0, cloudMg3X = 0;
     Bitmap sky,cloudBg,loneCloud, mountain, cloudMg1, cloudMg2, cloudMg3;
     Handler handler;
     Runnable runnable;
-    final long UPDATE_MILLIS = 30;
+    final long UPDATE_MILLIS = 1000;
 
     public BackgroundView(Context context) {
         super(context);
@@ -108,5 +111,13 @@ public class BackgroundView extends View {
             canvas.drawBitmap(cloudMg1, cloudMg1X + newWidth, 0, null);
         }
         handler.postDelayed(runnable,UPDATE_MILLIS);
+    }
+
+    public Bitmap getSky() {
+        return sky;
+    }
+
+    public Bitmap getMountain() {
+        return mountain;
     }
 }

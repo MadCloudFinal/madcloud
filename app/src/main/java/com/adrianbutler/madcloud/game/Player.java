@@ -13,7 +13,8 @@ import com.adrianbutler.madcloud.R;
 public class Player {
 
     private Bitmap bitmap;
-    Rect hitbox;
+     private Rect hitbox;
+     private int uiSize = 50;
 
     private Bitmap[] playerAnimation = new Bitmap[5];
 
@@ -52,8 +53,8 @@ public class Player {
         playerAnimation[3] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_4);
         playerAnimation[4] = BitmapFactory.decodeResource(context.getResources(), R.drawable.cloud_5);
 
-        maxY = screenY - playerAnimation[0].getHeight();
-        minY = 0;
+        maxY = screenY - bitmap.getHeight();
+        minY = uiSize;
         hitbox = new Rect(x,y,bitmap.getWidth(),bitmap.getHeight());
         floating = false;
     }

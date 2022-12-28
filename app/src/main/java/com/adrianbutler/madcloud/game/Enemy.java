@@ -22,14 +22,15 @@ public class Enemy{
     int speed = 1;
     int maxY, minY;
     int maxX, minX;
+    int uiSize = 50;
     Rect hitbox;
 
     public Enemy(Context context, int screenX, int screenY)
     {
         enemyBit = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
-        maxY = screenY;
+        maxY = screenY - uiSize;
         maxX = screenX;
-        minY = 0;
+        minY = uiSize;
         minX = 0;
 
         Random spawner =new Random();

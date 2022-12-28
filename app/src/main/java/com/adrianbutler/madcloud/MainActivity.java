@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity
 
 		setContentView(R.layout.activity_main);
 
-		Intent background = new Intent(MainActivity.this, com.adrianbutler.madcloud.background.class);
-
 		playBtn = findViewById(R.id.landing_button_play);
 
 		playBtn.setOnClickListener(new View.OnClickListener() {
