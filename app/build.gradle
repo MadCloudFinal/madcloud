@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+
     implementation 'com.amplifyframework:core:2.0.0'
     implementation 'com.amplifyframework:aws-api:2.0.0'
     implementation 'com.google.android.gms:play-services-ads:21.4.0'
