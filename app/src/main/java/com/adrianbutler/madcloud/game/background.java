@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud;
+package com.adrianbutler.madcloud.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
