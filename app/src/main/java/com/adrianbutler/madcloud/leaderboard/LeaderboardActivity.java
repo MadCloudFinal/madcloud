@@ -17,7 +17,6 @@ import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity
 {
-	private RecyclerView recyclerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -29,7 +28,7 @@ public class LeaderboardActivity extends AppCompatActivity
 
 	private void setupRecyclerView()
 	{
-		recyclerView = findViewById(R.id.LeaderboardRecyclerView);
+		RecyclerView recyclerView = findViewById(R.id.LeaderboardRecyclerView);
 		// give recycler view rounded borders
 
 		recyclerView.setOutlineProvider(new ViewOutlineProvider()
