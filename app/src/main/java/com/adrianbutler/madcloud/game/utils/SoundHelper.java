@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.game;
+package com.adrianbutler.madcloud.game.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -53,9 +53,9 @@ public class SoundHelper {
             }
         });
         // load sound
-        keyA = soundPool.load(mContext, R.raw.thunder, 1);
+        keyA = soundPool.load(mContext, R.raw.strike, 1);
         keyB = soundPool.load(mContext, R.raw.voron, 1);
-        keyC = soundPool.load(mContext, R.raw.owl3, 1);
+        keyC = soundPool.load(mContext, R.raw.owl, 1);
         fxArray = new int[]{keyA, keyB, keyC};
 
     }
@@ -70,27 +70,41 @@ public class SoundHelper {
         return actualVolume / maxVolume;
     }
 
+    public void triggerSFX(String name) {
+        switch (name) {
+            case "strike":
+                if (fxArray[0] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "playReceiveSound vol:" + volume);
+                }
+            case "owl":
+                if (fxArray[2] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[2], 1, 1, 1, 0, 1f);
+                    Log.e(TAG, "playSendSound vol:" + volume);
+                }
+        }
+    }
 
-    public void playThunder() {
-        if (fxArray[0] != -1) {
-            float volume = getVolume();
-            soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
-            Log.e(TAG, "playReceiveSound vol:" + volume);
-        }
-    }
-    public void playCrow() {
-        if (fxArray[1] != -1) {
-            float volume = getVolume();
-            soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
-            Log.e(TAG, "playSendSound vol:" + volume);
-        }
-    }
+//    public void playThunder() {
+//        if (fxArray[0] != -1) {
+//            float volume = getVolume();
+//            soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
+//            Log.e(TAG, "playReceiveSound vol:" + volume);
+//        }
+
+    //    }
+//    public void playCrow() {
+//        if (fxArray[1] != -1) {
+//            float volume = getVolume();
+//            soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+//            Log.e(TAG, "playSendSound vol:" + volume);
+//        }
+//    }
     public void playOwl() {
-        if (fxArray[2] != -1) {
-            float volume = getVolume();
-            soundPool.play(fxArray[2], volume, volume, 1, 0, 1f);
-            Log.e(TAG, "playSendSound vol:" + volume);
-        }
-    }
 
+//    }
+
+    }
 }

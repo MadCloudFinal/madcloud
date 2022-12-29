@@ -12,8 +12,6 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adrianbutler.madcloud.game.GameActivity;
-import com.adrianbutler.madcloud.game.SoundHelper;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
     private SoundPool mSoundPool;
@@ -59,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //title sound/music
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
-//        mediaPlayer.start();
+        mediaPlayer.start();
         
 //		playBtn = findViewById(R.id.landing_button_play);
 

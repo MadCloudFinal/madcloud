@@ -9,6 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.adrianbutler.madcloud.game.background.BackgroundView;
+import com.adrianbutler.madcloud.game.utils.SoundHelper;
 
 public class GameView extends SurfaceView implements Runnable {
     SoundHelper sfx = new SoundHelper(getContext());
@@ -73,7 +74,7 @@ public class GameView extends SurfaceView implements Runnable {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
 //                 sfx.playCrow();
-                    sfx.playOwl();
+                    sfx.triggerSFX("owl");
                     birds[i].setX(-300);
                 }
             }
@@ -92,7 +93,7 @@ public class GameView extends SurfaceView implements Runnable {
             lightning[i].update();
             if (Rect.intersects(player.getHitbox(), lightning[i].getHitbox())) {
                 score += 5;
-                sfx.playThunder();
+                sfx.triggerSFX("strike");
                 lightning[i].setX(-200);
             }
         }

@@ -53,8 +53,8 @@ public class GameActivity extends AppCompatActivity {
 
         gameView = new GameView(this, size.x, size.y);
 //        setContentView(R.layout.game_rel);
-//background sound/music
 
+                        //background sound/music
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wind);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
