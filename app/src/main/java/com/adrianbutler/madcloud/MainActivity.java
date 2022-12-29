@@ -54,11 +54,10 @@ public class MainActivity extends AppCompatActivity
 
 		setupTitleButtons();
 
-		//raven
 		ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
 		ravenFly.setBackgroundResource(R.drawable.fly);
 		AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
-		//Start the animation:
+
 		animation.start();
 	}
 
