@@ -21,10 +21,9 @@ public class AdManager
 
 	private static final String INTERSTITIAL_TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"; // use this while testing
 	private static final String INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4107669880849603/7026078398"; // ONLY USE IN PRODUCTION!
-	private final String CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID;
-
 	private static final String REWARDED_TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917"; // use while testing
 	private static final String REWARDED_AD_UNIT_ID = "ca-app-pub-4107669880849603/8393633401"; // ONLY USE IN PRODUCTION!
+	private final String CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID;
 	private final String CURRENTLY_USED_REWARDED_AD_UNIT_ID;
 
 	private final Context context;
@@ -42,8 +41,7 @@ public class AdManager
 
 			CURRENTLY_USED_INTERSTITIAL_AD_UNIT_ID = INTERSTITIAL_AD_UNIT_ID;
 			CURRENTLY_USED_REWARDED_AD_UNIT_ID = REWARDED_AD_UNIT_ID;
-		}
-		else
+		} else
 		{
 			Log.i(TAG, "Using testing ad unit ids");
 

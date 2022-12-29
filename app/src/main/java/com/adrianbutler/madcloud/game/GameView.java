@@ -19,7 +19,7 @@ public class GameView extends SurfaceView implements Runnable {
     volatile boolean isPlaying;
     int uiSize = 50;
 
-    private Player player;
+    private final Player player;
     Enemy[] birds;
     int difficulty = 5;
 
@@ -27,9 +27,9 @@ public class GameView extends SurfaceView implements Runnable {
 
 
     //Drawing objects
-    private Paint paint;
+    private final Paint paint;
     private Canvas canvas;
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
 
     BackgroundView backgroundView;
 
@@ -138,7 +138,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void control() {
         try {
-            gameThread.sleep(17);
+            Thread.sleep(17);
 
         } catch (InterruptedException event) {
             event.printStackTrace();

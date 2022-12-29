@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Enemy{
 
-    private Bitmap enemyBit;
+    private final Bitmap enemyBit;
 
     int x, y;
     int speed = 1;

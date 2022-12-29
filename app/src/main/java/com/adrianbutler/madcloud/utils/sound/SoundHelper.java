@@ -14,10 +14,11 @@ public class SoundHelper {
     private final String TAG = "SoundHelper";
     int[] fxArray;
     private final int POOL_MAX = 10;
-    private Context mContext;
+    private final Context mContext;
     private static SoundHelper soundHelper;
     private SoundPool soundPool = null;
-    private int rcv_id = -1, snd_id = -1;
+    private final int rcv_id = -1;
+	private final int snd_id = -1;
     private int keyA, keyB, keyC, keyD;
 
 

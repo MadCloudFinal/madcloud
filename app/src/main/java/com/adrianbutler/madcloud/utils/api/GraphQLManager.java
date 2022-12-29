@@ -105,7 +105,7 @@ public class GraphQLManager
 	}
 
 	public static List<User> getUsersByDescendingScore()
-	  {
+	{
 		AtomicReference<List<User>> userListReference = new AtomicReference<>();
 		CountDownLatch latch = new CountDownLatch(1);
 
