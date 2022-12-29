@@ -24,20 +24,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.adrianbutler.madcloud.api.GraphQLManager;
 import com.adrianbutler.madcloud.auth.SharedPreferencesManager;
 import com.adrianbutler.madcloud.game.GameActivity;
+import com.adrianbutler.madcloud.game.utils.AudioPlay;
+import com.adrianbutler.madcloud.game.utils.SoundHelper;
 
 public class MainActivity extends AppCompatActivity {
-    private SoundPool mSoundPool;
-    private int mSoundId = 1;
-    private int mStreamId;
+    SoundHelper sfx;
 
-    private SoundPool soundPool;
-    MediaPlayer mediaPlayer;
-    private int[] soundEffectsArray;
 
     private SharedPreferencesManager sharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sfx = new SoundHelper(getApplicationContext());
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //fullscreen
@@ -58,18 +56,18 @@ public class MainActivity extends AppCompatActivity {
             usernameInput.setText(username);
         }
 
-        //title sound/music
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
-        mediaPlayer.start();
-        
+        //titlestrike sound/music
+        AudioPlay.playAudio(getApplicationContext(), R.raw.thunder_roll);
+
 //		playBtn = findViewById(R.id.landing_button_play);
 
-        Button playButton = findViewById(R.id.soundFXBtn);
-        playButton.setOnClickListener(onPlayButtonClickListener);
-        setupTitleButtons();
 
-        mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-        mSoundPool.load(this, R.raw.voron, 1);
+        setupTitleButtons();
+//
+//        Button playButton = findViewById(R.id.soundFXBtn);
+//        playButton.setOnClickListener(onPlayButtonClickListener);
+//        mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
+//        mSoundPool.load(this, R.raw.crow_short, 1);
 
         //raven
         ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
@@ -82,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        mediaPlayer.stop();
-//        mediaPlayer.release();
     }
 
     public void setupTitleButtons() {
@@ -92,12 +88,21 @@ public class MainActivity extends AppCompatActivity {
         TextView usernameDisplay = findViewById(R.id.username_display);
         Button goToGameBtn = findViewById(R.id.TitlePlayBtn);
 
+        // Get the shared preferences object
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+
+        // Get the saved username from shared preferences
+        final String[] username = {sharedPreferences.getString("username", "")};
+
+        // If a username is saved in shared preferences, display it in place of the EditText and TextView widgets
+        if (!username[0].equals("")) {
 
             // Get the saved username from shared preferences
         final String[] usernameReference = {sharedPreferencesManager.getUsername()};
 
             // If a username is saved in shared preferences, display it in place of the EditText and TextView widgets
         if (usernameReference[0] != null) {
+
             usernameInput.setVisibility(View.GONE);
             usernamePrompt.setVisibility(View.GONE);
             usernameDisplay.setText(usernameReference[0]);
@@ -149,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         goToGameBtn.setOnClickListener(view -> {
             Intent goToGame = new Intent(this, GameActivity.class);
+            sfx.triggerSFX("crow");
             startActivity(goToGame);
         });
 
@@ -164,55 +170,4 @@ public class MainActivity extends AppCompatActivity {
             finishAndRemoveTask();
         });
     }
-
-    Button.OnClickListener onPlayButtonClickListener
-            = new Button.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            float curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-            float maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            float leftVolume = curVolume / maxVolume;
-            float rightVolume = curVolume / maxVolume;
-            int priority = 1;
-            int no_loop = 0;
-            float normal_playback_rate = 1f;
-            mStreamId = mSoundPool.play(mSoundId, leftVolume, rightVolume, priority, no_loop,
-                    normal_playback_rate);
-            Toast.makeText(getApplicationContext(),
-                    "soundPool.play()",
-                    Toast.LENGTH_LONG).show();
-        }
-    };
-
-
-
-    private void setupSounds() {
-        AudioAttributes audioAttributes = new AudioAttributes
-                .Builder()
-                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
-        soundPool = new SoundPool
-                .Builder()
-                .setMaxStreams(6)
-                .setAudioAttributes(audioAttributes)
-                .build();
-        soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-        int keyA = soundPool.load(this, R.raw.thunder, 1);
-//        int keyB = soundPool.load(this, R.raw.new_key02, 1);
-//        int keyC = soundPool.load(this, R.raw.new_key03, 1);
-//        int keyD = soundPool.load(this, R.raw.new_key04, 1);
-//        int keyE = soundPool.load(this, R.raw.new_key05, 1);
-//        int bgSong = soundPool.load(this,R.raw.flowing_rocks_short,1);
-        soundEffectsArray = new int[]{keyA};
-
-        soundPool.play(keyA, 1, (float) 0.65, 1, 0, 1);
-        Toast.makeText(getApplicationContext(),
-                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-                Toast.LENGTH_LONG).show();
-//        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
-
-    }
-
 }

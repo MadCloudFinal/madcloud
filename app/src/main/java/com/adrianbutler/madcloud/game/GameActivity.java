@@ -1,13 +1,7 @@
 package com.adrianbutler.madcloud.game;
 
 import android.content.pm.ActivityInfo;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -18,18 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
-
-import java.io.IOException;
+import com.adrianbutler.madcloud.game.utils.AudioPlay;
 
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     BackgroundView backgroundView;
-    MediaPlayer mediaPlayer;
-    SoundPool sp;
-    int nowPlaying = -1;
-    int idFX1 = -1;
-    float volume = 1;// Volumes range from 0 through 1
+
 //    RelativeLayout relativeLayout = findViewById(R.id.game_view);
 
     @Override
@@ -47,26 +36,23 @@ public class GameActivity extends AppCompatActivity {
         //Gets the screen resolution as point objects
         Point size = new Point();
         display.getSize(size);
+        //bg music goes here
+
 
 //        relativeLayout.addView(new GameView(this, size.x, size.y));
 //        relativeLayout.addView(new BackgroundView(this));
 
         gameView = new GameView(this, size.x, size.y);
 //        setContentView(R.layout.game_rel);
-
-                        //background sound/music
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wind);
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
         setContentView(gameView);
+        AudioPlay.playAudio(getApplicationContext(), R.raw.bolero);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         gameView.stopped();
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        AudioPlay.stopAudio();
     }
 
     //this on resume will set the playing variable to true and start the game loop
