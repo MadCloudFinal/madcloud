@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //titlestrike sound/music
-        AudioPlay.playAudio(getApplicationContext(), R.raw.thunder_roll);
+//        AudioPlay.playAudio(getApplicationContext(), R.raw.thunder_roll);
 
 //		playBtn = findViewById(R.id.landing_button_play);
 
