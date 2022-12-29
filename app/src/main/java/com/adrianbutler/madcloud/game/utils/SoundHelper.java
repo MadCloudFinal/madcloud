@@ -54,7 +54,7 @@ public class SoundHelper {
         });
         // load sound
         keyA = soundPool.load(mContext, R.raw.strike, 1);
-        keyB = soundPool.load(mContext, R.raw.voron, 1);
+        keyB = soundPool.load(mContext, R.raw.crow_short, 1);
         keyC = soundPool.load(mContext, R.raw.owl, 1);
         fxArray = new int[]{keyA, keyB, keyC};
 
@@ -76,14 +76,25 @@ public class SoundHelper {
                 if (fxArray[0] != -1) {
                     float volume = getVolume();
                     soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
-                    Log.e(TAG, "playReceiveSound vol:" + volume);
+                    Log.e(TAG, "strike vol:" + volume);
+                    break;
+                }
+            case "crow":
+                if (fxArray[1] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "crow vol:" + volume);
+                    break;
                 }
             case "owl":
                 if (fxArray[2] != -1) {
                     float volume = getVolume();
-                    soundPool.play(fxArray[2], 1, 1, 1, 0, 1f);
-                    Log.e(TAG, "playSendSound vol:" + volume);
+                    soundPool.play(fxArray[2], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "owl vol:" + volume);
+                    break;
                 }
+//            default:
+
         }
     }
 
