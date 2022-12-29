@@ -77,7 +77,7 @@ public class SoundHelper {
                 if (fxArray[0] != -1) {
                     float volume = getVolume();
 
-                    soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
+                    soundPool.play(fxArray[0], (float)0.4, (float)0.4, 1, 0, 1f);
                     Log.e(TAG, "strike vol:" + volume);
                     break;
                 }

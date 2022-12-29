@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font android:font="@font/vt323"
         android:fontStyle="normal"
-        android:fontWeight="400"
+        android:fontWeight="800"
         app:font="@font/vt323"
         app:fontStyle="normal"
         app:fontWeight="400" />
