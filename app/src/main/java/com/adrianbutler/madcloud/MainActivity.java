@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.adrianbutler.madcloud.leaderboard.LeaderboardActivity;
 import com.adrianbutler.madcloud.utils.api.GraphQLManager;
 import com.adrianbutler.madcloud.utils.auth.SharedPreferencesManager;
 import com.adrianbutler.madcloud.game.GameActivity;
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity
 		Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
 		goToStatsBtn.setOnClickListener(view ->
 		{
-			Intent goToStats = new Intent(this, MainActivity.class);
+			Intent goToStats = new Intent(this, LeaderboardActivity.class);
 			startActivity(goToStats);
 		});
 
