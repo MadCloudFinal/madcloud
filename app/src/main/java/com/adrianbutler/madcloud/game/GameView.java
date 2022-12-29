@@ -1,5 +1,6 @@
 package com.adrianbutler.madcloud.game;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,7 +9,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.adrianbutler.madcloud.ads.AdManager;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
+
+import java.util.concurrent.CountDownLatch;
 
 public class GameView extends SurfaceView implements Runnable {
     int score;
@@ -28,14 +32,24 @@ public class GameView extends SurfaceView implements Runnable {
 
     BackgroundView backgroundView;
 
+    Activity addActivity;
+    GameActivity gameActivity;
+    AdManager adManager;
+
     // this will track the gameThread
     private Thread gameThread = null;
+    Thread addThread;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         setLayerType(LAYER_TYPE_HARDWARE, null);
 
-        System.out.println(isHardwareAccelerated());
+        adManager = new AdManager(context, false);
+        addActivity = (Activity) context;
+
+        gameActivity = new GameActivity();
+
+
 
         score = 0;
 
@@ -67,6 +81,7 @@ public class GameView extends SurfaceView implements Runnable {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
                     birds[i].setX(-300);
+                    stopped();
                 }
             }
             //updates the frame
@@ -97,12 +112,12 @@ public class GameView extends SurfaceView implements Runnable {
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
 
-            backgroundView.draw(canvas);
-//             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
-//             canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
+//            backgroundView.draw(canvas);
+             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
+             canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
 
             paint.setTextSize(40);
-            canvas.drawText("Score - " + score, 100, 50, paint);
+            canvas.drawText("Score " + score, 100, 50, paint);
 
             canvas.drawBitmap(player.getBitmap(), player.getX(), player.getY(), paint);
 
@@ -127,7 +142,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void control() {
         try {
-            gameThread.sleep(17);
+            gameThread.sleep(20);
 
         } catch (InterruptedException event) {
             event.printStackTrace();
@@ -137,13 +152,24 @@ public class GameView extends SurfaceView implements Runnable {
     public void stopped() {
         //when the game is paused or when the player dies stop the thread
         isPlaying = false;
+
         try {
             //stop thread logic
-            gameThread.join();
 
-        } catch (InterruptedException event) {
+            addThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    gameActivity.uiThread();
+                }
+            });
 
-        }
+            addThread.start();
+            addThread.join();
+//            gameThread.start();
+//            gameThread.join();
+
+
+        }catch (InterruptedException exception){}
     }
 
     public void resume() {
