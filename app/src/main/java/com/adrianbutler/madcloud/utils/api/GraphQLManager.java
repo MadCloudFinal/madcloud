@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.api;
+package com.adrianbutler.madcloud.utils.api;
 
 import android.util.Log;
 
@@ -43,7 +43,7 @@ public class GraphQLManager
 		return newUser.getId();
 	}
 
-	private static boolean userExists(String name) //TODO ADD LATCH
+	private static boolean userExists(String name)
 	{
 		AtomicBoolean userExists = new AtomicBoolean(false);
 		CountDownLatch latch = new CountDownLatch(1);

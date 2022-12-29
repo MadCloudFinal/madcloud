@@ -16,11 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.adrianbutler.madcloud.api.GraphQLManager;
-import com.adrianbutler.madcloud.auth.SharedPreferencesManager;
 import com.adrianbutler.madcloud.game.GameActivity;
-import com.adrianbutler.madcloud.game.utils.AudioPlay;
-import com.adrianbutler.madcloud.game.utils.SoundHelper;
+import com.adrianbutler.madcloud.utils.api.GraphQLManager;
+import com.adrianbutler.madcloud.utils.auth.SharedPreferencesManager;
+import com.adrianbutler.madcloud.utils.sound.SoundHelper;
 
 public class MainActivity extends AppCompatActivity {
     SoundHelper sfx;
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     goToGameBtn.setEnabled(true);
 
                     // Save the inputted username to shared preferences
+
 //                    SharedPreferences.Editor editor = sharedPreferences.edit();
 //                    editor.putString("username", username);
 //                    editor.apply();
