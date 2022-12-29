@@ -13,11 +13,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:text="@string/madcloud"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,32 +32,71 @@
         app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!--    <ImageView -->
-<!--        android:animation="@drawable/fly" -->
-<!--        />-->
+    <!--    <ImageView -->
+    <!--        android:animation="@drawable/fly" -->
+    <!--        />-->
 
+    <TextView
+        android:id="@+id/username_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Enter your username:"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="306dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="36dp"
+        android:imeOptions="actionDone"
+        android:maxLength="15"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/username_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
     <Button
         android:id="@+id/TitlePlayBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="@string/play"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_marginBottom="8dp"
+        android:enabled="false"
+        android:text="Play"
+        app:layout_constraintBottom_toTopOf="@+id/TitleQuitBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/TitleQuitBtn"
-        android:background="@drawable/custom_button"
-        android:enabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="148dp"
+        android:background="@drawable/custom_button"
+        android:enabled="true"
         android:text="@string/quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/flyRaven"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -65,24 +104,27 @@
         android:id="@+id/TitleStatsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="296dp"
         android:text="@string/stats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/flyRaven"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitlePlayBtn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/flyRaven"
         android:layout_width="250px"
         android:layout_height="280px"
-        android:animation="@drawable/fly"
-
-
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
 
-        tools:layout_editor_absoluteY="248dp" />
+
+        android:animation="@drawable/fly"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
