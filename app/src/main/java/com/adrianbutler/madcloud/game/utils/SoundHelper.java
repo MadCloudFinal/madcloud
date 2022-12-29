@@ -18,7 +18,8 @@ public class SoundHelper {
     private static SoundHelper soundHelper;
     private SoundPool soundPool = null;
     private int rcv_id = -1, snd_id = -1;
-    private int keyA, keyB, keyC;
+    private int keyA, keyB, keyC, keyD;
+
 
     public SoundHelper get(Context context) {
         if (soundHelper == null) {
@@ -56,8 +57,8 @@ public class SoundHelper {
         keyA = soundPool.load(mContext, R.raw.strike, 1);
         keyB = soundPool.load(mContext, R.raw.crow_short, 1);
         keyC = soundPool.load(mContext, R.raw.owl, 1);
-        fxArray = new int[]{keyA, keyB, keyC};
-
+        keyD = soundPool.load(mContext, R.raw.nevermore, 1);
+        fxArray = new int[]{keyA, keyB, keyC, keyD};
     }
 
     private float getVolume() {
@@ -75,6 +76,7 @@ public class SoundHelper {
             case "strike":
                 if (fxArray[0] != -1) {
                     float volume = getVolume();
+
                     soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
                     Log.e(TAG, "strike vol:" + volume);
                     break;
@@ -83,6 +85,8 @@ public class SoundHelper {
                 if (fxArray[1] != -1) {
                     float volume = getVolume();
                     soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+
+//                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
                     Log.e(TAG, "crow vol:" + volume);
                     break;
                 }

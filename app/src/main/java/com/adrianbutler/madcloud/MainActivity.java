@@ -24,8 +24,6 @@ import com.adrianbutler.madcloud.game.utils.SoundHelper;
 
 public class MainActivity extends AppCompatActivity {
     SoundHelper sfx;
-
-
     private SharedPreferencesManager sharedPreferencesManager;
 
     @Override
@@ -56,13 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
 //		playBtn = findViewById(R.id.landing_button_play);
 
-
         setupTitleButtons();
-//
-//        Button playButton = findViewById(R.id.soundFXBtn);
-//        playButton.setOnClickListener(onPlayButtonClickListener);
-//        mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-//        mSoundPool.load(this, R.raw.crow_short, 1);
 
         //raven
         ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
@@ -100,13 +92,9 @@ public class MainActivity extends AppCompatActivity {
             // Otherwise, set an OnEditorActionListener on the EditText widget to save the inputted username to shared preferences
             usernameInput.setOnEditorActionListener((v, actionId, event) -> {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-
                     usernameReference[0] = usernameInput.getText().toString();
                     String username = usernameReference[0];
-
-
                     String userId = GraphQLManager.createUser(username);
-
                     if (userId == null) // user already exists in db
                     {
                         Toast usernameTakenToast = new Toast(this);
@@ -129,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                     goToGameBtn.setEnabled(true);
 
                     // Save the inputted username to shared preferences
-
 //                    SharedPreferences.Editor editor = sharedPreferences.edit();
 //                    editor.putString("username", username);
 //                    editor.apply();
