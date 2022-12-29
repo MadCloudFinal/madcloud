@@ -11,7 +11,9 @@ import android.view.SurfaceView;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
 
 public class GameView extends SurfaceView implements Runnable {
+    SoundHelper sfx = new SoundHelper(getContext());
     int score;
+
     // this checks if the game is being played
     volatile boolean isPlaying;
     int uiSize = 50;
@@ -19,7 +21,9 @@ public class GameView extends SurfaceView implements Runnable {
     private Player player;
     Enemy[] birds;
     int difficulty = 5;
+
     Lightning[] lightning;
+
 
     //Drawing objects
     private Paint paint;
@@ -27,6 +31,7 @@ public class GameView extends SurfaceView implements Runnable {
     private SurfaceHolder surfaceHolder;
 
     BackgroundView backgroundView;
+
 
     // this will track the gameThread
     private Thread gameThread = null;
@@ -43,10 +48,12 @@ public class GameView extends SurfaceView implements Runnable {
         birds = new Enemy[difficulty];
         lightning = new Lightning[difficulty - 2];
 
+
         // these are our initialized drawing objects
         surfaceHolder = getHolder();
         paint = new Paint();
         backgroundView = new BackgroundView(context);
+
 
         for (int i = 0; i < (difficulty - 2); i++) {
             lightning[i] = new Lightning(context, screenX, screenY);
@@ -59,13 +66,14 @@ public class GameView extends SurfaceView implements Runnable {
 
     @Override
     public void run() {
-
         //this is our game loop
         while (isPlaying) {
 
             for (int i = 0; i < difficulty; i++) {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
+//                 sfx.playCrow();
+                    sfx.playOwl();
                     birds[i].setX(-300);
                 }
             }
@@ -78,13 +86,13 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void update() {
-
         //Update the players position
         player.update();
         for (int i = 0; i < (difficulty - 2); i++) {
             lightning[i].update();
             if (Rect.intersects(player.getHitbox(), lightning[i].getHitbox())) {
                 score += 5;
+                sfx.playThunder();
                 lightning[i].setX(-200);
             }
         }
@@ -96,6 +104,7 @@ public class GameView extends SurfaceView implements Runnable {
         if (surfaceHolder.getSurface().isValid()) {
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
+
 
             backgroundView.draw(canvas);
 //             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
@@ -112,6 +121,7 @@ public class GameView extends SurfaceView implements Runnable {
             for (int i = 0; i < (difficulty - 2); i++) {
                 canvas.drawBitmap(lightning[i].getLightningBit(), lightning[i].getX(), lightning[i].getY(), paint);
             }
+
             //unlocks the canvas
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -158,6 +168,7 @@ public class GameView extends SurfaceView implements Runnable {
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+
             case MotionEvent.ACTION_UP:
                 // stops floating when released
                 player.stopFloating();

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adrianbutler.madcloud.game.GameActivity;
+import com.adrianbutler.madcloud.game.SoundHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //title sound/music
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.thunder);
-        mediaPlayer.start();
-
+//        mediaPlayer.start();
         
 //		playBtn = findViewById(R.id.landing_button_play);
 
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mediaPlayer.stop();
-        mediaPlayer.release();
+//        mediaPlayer.stop();
+//        mediaPlayer.release();
     }
 
     public void setupTitleButtons() {
@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
             float normal_playback_rate = 1f;
             mStreamId = mSoundPool.play(mSoundId, leftVolume, rightVolume, priority, no_loop,
                     normal_playback_rate);
-
             Toast.makeText(getApplicationContext(),
                     "soundPool.play()",
                     Toast.LENGTH_LONG).show();
@@ -196,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
                 Toast.LENGTH_LONG).show();
-
 //        soundEffectsArray = new int[]{keyA, keyB, keyC, keyD, keyE, bgSong};
 
     }
