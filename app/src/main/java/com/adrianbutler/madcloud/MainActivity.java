@@ -1,13 +1,8 @@
 package com.adrianbutler.madcloud;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -88,14 +83,7 @@ public class MainActivity extends AppCompatActivity {
         TextView usernameDisplay = findViewById(R.id.username_display);
         Button goToGameBtn = findViewById(R.id.TitlePlayBtn);
 
-        // Get the shared preferences object
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-
-        // Get the saved username from shared preferences
-        final String[] username = {sharedPreferences.getString("username", "")};
-
         // If a username is saved in shared preferences, display it in place of the EditText and TextView widgets
-        if (!username[0].equals("")) {
 
             // Get the saved username from shared preferences
         final String[] usernameReference = {sharedPreferencesManager.getUsername()};
