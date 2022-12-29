@@ -1,0 +1,18 @@
+package com.adrianbutler.madcloud.leaderboard;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.adrianbutler.madcloud.R;
+
+public class LeaderboardActivity extends AppCompatActivity
+{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_leaderboard);
+	}
+}
