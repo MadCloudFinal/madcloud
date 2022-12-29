@@ -105,7 +105,7 @@ public class GraphQLManager
 	}
 
 	public static List<User> getUsersByDescendingScore()
-	{
+	  {
 		AtomicReference<List<User>> userListReference = new AtomicReference<>();
 		CountDownLatch latch = new CountDownLatch(1);
 
@@ -139,5 +139,22 @@ public class GraphQLManager
 			e.printStackTrace();
 		}
 		return userListReference.get();
+	}
+
+	public static void updateUsersHighScore(String id, int newHighScore)
+	{
+		User user = findUserById(id);
+
+		user = user.copyOfBuilder().highScore(newHighScore).build();
+
+		Amplify.API.mutate(ModelMutation.update(user),
+				success ->
+				{
+					Log.i(TAG, "Successfully updated high score");
+				},
+				failure ->
+				{
+					Log.e(TAG, "Failed to update high score");
+				});
 	}
 }
