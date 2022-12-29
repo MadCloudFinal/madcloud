@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.ads;
+package com.adrianbutler.madcloud.utils.ads;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.api;
+package com.adrianbutler.madcloud.utils.api;
 
 import android.util.Log;
 

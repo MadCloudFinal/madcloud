@@ -9,7 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.adrianbutler.madcloud.game.background.BackgroundView;
-import com.adrianbutler.madcloud.game.utils.SoundHelper;
+import com.adrianbutler.madcloud.utils.sound.SoundHelper;
 
 public class GameView extends SurfaceView implements Runnable {
     SoundHelper sfx = new SoundHelper(getContext());
