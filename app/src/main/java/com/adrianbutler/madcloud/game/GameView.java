@@ -11,7 +11,7 @@ import android.view.SurfaceView;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
 
 public class GameView extends SurfaceView implements Runnable {
-    SoundHelper trig = new SoundHelper(getContext());
+    SoundHelper sfx = new SoundHelper(getContext());
     int score;
 
     // this checks if the game is being played
@@ -31,7 +31,7 @@ public class GameView extends SurfaceView implements Runnable {
     private SurfaceHolder surfaceHolder;
 
     BackgroundView backgroundView;
-    SoundHelper sfx = new SoundHelper(getContext());
+
 
     // this will track the gameThread
     private Thread gameThread = null;
@@ -72,8 +72,9 @@ public class GameView extends SurfaceView implements Runnable {
             for (int i = 0; i < difficulty; i++) {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
-                 sfx.playCrowe();
-                 birds[i].setX(-300);
+//                 sfx.playCrow();
+                    sfx.playOwl();
+                    birds[i].setX(-300);
                 }
             }
             //updates the frame
@@ -91,6 +92,7 @@ public class GameView extends SurfaceView implements Runnable {
             lightning[i].update();
             if (Rect.intersects(player.getHitbox(), lightning[i].getHitbox())) {
                 score += 5;
+                sfx.playThunder();
                 lightning[i].setX(-200);
             }
         }

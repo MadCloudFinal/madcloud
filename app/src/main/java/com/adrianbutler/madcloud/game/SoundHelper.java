@@ -12,12 +12,13 @@ import com.adrianbutler.madcloud.R;
 
 public class SoundHelper {
     private final String TAG = "SoundHelper";
-
+    int[] fxArray;
     private final int POOL_MAX = 10;
     private Context mContext;
     private static SoundHelper soundHelper;
     private SoundPool soundPool = null;
     private int rcv_id = -1, snd_id = -1;
+    private int keyA, keyB, keyC;
 
     public SoundHelper get(Context context) {
         if (soundHelper == null) {
@@ -52,8 +53,11 @@ public class SoundHelper {
             }
         });
         // load sound
-        rcv_id = soundPool.load(mContext, R.raw.thunder, 1);
-        snd_id = soundPool.load(mContext, R.raw.voron, 1);
+        keyA = soundPool.load(mContext, R.raw.thunder, 1);
+        keyB = soundPool.load(mContext, R.raw.voron, 1);
+        keyC = soundPool.load(mContext, R.raw.owl3, 1);
+        fxArray = new int[]{keyA, keyB, keyC};
+
     }
 
     private float getVolume() {
@@ -66,19 +70,27 @@ public class SoundHelper {
         return actualVolume / maxVolume;
     }
 
-    public void playCrowe() {
-        if (snd_id != -1) {
+
+    public void playThunder() {
+        if (fxArray[0] != -1) {
             float volume = getVolume();
-            soundPool.play(snd_id, volume, volume, 1, 0, 1f);
+            soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
+            Log.e(TAG, "playReceiveSound vol:" + volume);
+        }
+    }
+    public void playCrow() {
+        if (fxArray[1] != -1) {
+            float volume = getVolume();
+            soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+            Log.e(TAG, "playSendSound vol:" + volume);
+        }
+    }
+    public void playOwl() {
+        if (fxArray[2] != -1) {
+            float volume = getVolume();
+            soundPool.play(fxArray[2], volume, volume, 1, 0, 1f);
             Log.e(TAG, "playSendSound vol:" + volume);
         }
     }
 
-    public void playThunder() {
-        if (rcv_id != -1) {
-            float volume = getVolume();
-            soundPool.play(rcv_id, volume, volume, 1, 0, 1f);
-            Log.e(TAG, "playReceiveSound vol:" + volume);
-        }
-    }
 }

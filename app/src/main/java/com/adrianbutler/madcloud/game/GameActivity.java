@@ -57,7 +57,7 @@ public class GameActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wind);
         mediaPlayer.start();
-//        mediaPlayer.setLooping(true);
+        mediaPlayer.setLooping(true);
         setContentView(gameView);
     }
 
