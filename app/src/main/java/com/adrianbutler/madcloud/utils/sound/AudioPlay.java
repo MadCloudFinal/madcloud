@@ -16,6 +16,7 @@ public class AudioPlay {
         if (!mediaPlayer.isPlaying()) {
             isplayingAudio = true;
             mediaPlayer.start();
+//            mediaPlayer.setLooping(true);
         }
     }
 
