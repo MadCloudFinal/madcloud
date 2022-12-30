@@ -1,9 +1,13 @@
 package com.adrianbutler.madcloud.leaderboard;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Outline;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.utils.api.GraphQLManager;
+import com.adrianbutler.madcloud.utils.sound.AudioPlay;
 import com.amplifyframework.datastore.generated.model.User;
 
 import java.util.List;
@@ -22,7 +27,14 @@ public class LeaderboardActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.activity_leaderboard);
+		AudioPlay.playAudio(getApplicationContext(),R.raw.triumph);
+//		LinearLayout ll = (LinearLayout) findViewById(R.id.LeaderboardCardLinearLayout);
+//		ll.setAlpha((float)0.4);
 		setupRecyclerView();
 	}
 

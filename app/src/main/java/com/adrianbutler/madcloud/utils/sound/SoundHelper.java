@@ -58,7 +58,8 @@ public class SoundHelper {
         keyA = soundPool.load(mContext, R.raw.strike, 1);
         keyB = soundPool.load(mContext, R.raw.crow_short, 1);
         keyC = soundPool.load(mContext, R.raw.owl, 1);
-        keyD = soundPool.load(mContext, R.raw.nevermore, 1);
+        keyD = soundPool.load(mContext, R.raw.magic, 1);
+        keyE = soundPool.load(mContext, R.raw.triumph, 1);
         fxArray = new int[]{keyA, keyB, keyC, keyD};
     }
 
@@ -78,7 +79,7 @@ public class SoundHelper {
                 if (fxArray[0] != -1) {
                     float volume = getVolume();
 
-                    soundPool.play(fxArray[0], volume, volume, 1, 0, 1f);
+                    soundPool.play(fxArray[0], (float)0.6, (float)0.7, 1, 0, 1f);
                     Log.e(TAG, "strike vol:" + volume);
                     break;
                 }
@@ -105,6 +106,20 @@ public class SoundHelper {
                     float volume = getVolume();
                     soundPool.play(fxArray[2], volume, volume, 1, 0, 1f);
                     Log.e(TAG, "owl vol:" + volume);
+                    break;
+                }
+            case "magic":
+                if (fxArray[3] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "magic vol:" + volume);
+                    break;
+                }
+            case "king":
+                if (fxArray[4] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[4], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "magic vol:" + volume);
                     break;
                 }
 //            default:
