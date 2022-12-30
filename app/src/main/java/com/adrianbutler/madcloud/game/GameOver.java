@@ -1,12 +1,12 @@
 package com.adrianbutler.madcloud.game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.adrianbutler.madcloud.MainActivity;
 import com.adrianbutler.madcloud.R;
@@ -14,19 +14,21 @@ import com.adrianbutler.madcloud.ads.AdManager;
 
 public class GameOver extends AppCompatActivity {
     Button playAgain;
-    Button scoreBoard = findViewById(R.id.scoreboard_btn);
-    Button homeButton = findViewById(R.id.home_button);
-    TextView yourScore = findViewById(R.id.score_text);
+    Button scoreBoard;
+    Button homeButton;
+    TextView yourScore;
 
     AdManager adManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game_over);
+        scoreBoard = findViewById(R.id.scoreboard_btn);
+        homeButton = findViewById(R.id.home_button);
+        yourScore = findViewById(R.id.score_text);
 
-//        adManager = new AdManager(GameOver.this, false);
         uiThread();
-//        yourScore.setText(getIntent().getStringExtra("score"));
 
         playAgain = findViewById(R.id.play_again_btn);
         playAgain.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +39,6 @@ public class GameOver extends AppCompatActivity {
             }
         });
 
-//        scoreBoard.setOnClickListener();
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,9 +48,9 @@ public class GameOver extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_game_over);
-    }
 
+        yourScore.setText(getIntent().getStringExtra("score"));
+    }
 
     public void uiThread() {
         runOnUiThread(() -> {

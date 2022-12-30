@@ -1,29 +1,21 @@
 package com.adrianbutler.madcloud.game;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.ads.AdManager;
-import com.adrianbutler.madcloud.game.background.BackgroundView;
 
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
      volatile AdManager adManager;
-    Intent intent;
 
     MediaPlayer mediaPlayer;
 //    RelativeLayout relativeLayout = findViewById(R.id.game_view);
@@ -52,14 +44,10 @@ public class GameActivity extends AppCompatActivity {
 
 //        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wind);
 //        mediaPlayer.start();
-        intent = new Intent(GameActivity.this, GameOver.class);
         setContentView(gameView);
     }
 
     public void uiThread(){
-
-        intent.putExtra("score",gameView.getScore());
-        startActivity(intent);
 
         try {
             gameView.gameThread.join();

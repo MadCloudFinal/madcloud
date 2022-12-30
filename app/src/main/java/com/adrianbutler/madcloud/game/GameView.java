@@ -2,22 +2,20 @@ package com.adrianbutler.madcloud.game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Button;
 
 import com.adrianbutler.madcloud.ads.AdManager;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
 
-import java.util.concurrent.CountDownLatch;
-
 public class GameView extends SurfaceView implements Runnable {
 
-    public int score;
+    public Integer score;
 
     // this checks if the game is being played
     volatile boolean isPlaying;
@@ -31,7 +29,7 @@ public class GameView extends SurfaceView implements Runnable {
     //Drawing objects
     private Paint paint;
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -90,7 +88,18 @@ public class GameView extends SurfaceView implements Runnable {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
                     birds[i].setX(-300);
-                    gameActivity.uiThread();
+
+                    Intent intent = new Intent(getContext(), GameOver.class);
+                    intent.putExtra("score", score.toString());
+                    getContext().startActivity(intent);
+
+                    try
+                    {
+                        gameThread.join();
+                    } catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
             //updates the frame
