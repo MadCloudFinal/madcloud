@@ -49,9 +49,9 @@ public class GameActivity extends AppCompatActivity {
                 FrameLayout.LayoutParams.WRAP_CONTENT);
 
         params.topMargin = 0;
-        params.gravity = Gravity.TOP | Gravity.RIGHT;
+        params.gravity = Gravity.TOP | Gravity.END;
 
-        button.setText("OFF");
+        button.setText(R.string.off);
         addContentView(button, params);
         // setContentView(tv
         //background music logic
@@ -61,10 +61,10 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (AudioPlay.isplayingAudio) {
                     AudioPlay.stopAudio();
-                    button.setText("ON");
+                    button.setText(R.string.on);
                 } else {
                     AudioPlay.playAudio(getApplicationContext(), R.raw.bolero);
-                    button.setText("OFF");
+                    button.setText(R.string.off);
                 }
             }
         });
