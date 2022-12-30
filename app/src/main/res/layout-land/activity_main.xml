@@ -113,16 +113,16 @@
 
     <ImageView
         android:id="@+id/flyRaven"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_width="250px"
         android:layout_height="280px"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:animation="@drawable/fly"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.48" />
 
     <SeekBar
         android:id="@+id/seekBarVol"

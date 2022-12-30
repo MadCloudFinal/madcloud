@@ -1,3 +1,4 @@
+
 package com.adrianbutler.madcloud.game;
 
 import android.content.Context;
@@ -59,7 +60,7 @@ public class Enemy{
 
 
         for (int i = 0; i < enemyBit.length; i++) {
-            enemyBit[i] = Bitmap.createScaledBitmap(enemyBit[i], 100, 100, false);
+            enemyBit[i] = Bitmap.createScaledBitmap(enemyBit[i], 150, 150, false);
         }
 
         maxY = screenY - uiSize;
@@ -68,7 +69,7 @@ public class Enemy{
         minX = 0;
 
         hitbox = new Rect(x, y, enemyBit[0].getWidth(), enemyBit[0].getHeight());
-        speed = random.nextInt(7) + 10;
+        speed = random.nextInt(7) + 3;
         y = random.nextInt(maxY) - enemyBit[0].getHeight();
         x = screenX;
 
@@ -126,10 +127,7 @@ public class Enemy{
     }
 
     public int getMaxY() {
-        return maxY;
-    }
 
-    public int getMinY() {
         return minY;
     }
 
@@ -221,4 +219,5 @@ public class Enemy{
 //    public int getMinX() {
 //        return minX;
 //    }
+
 
