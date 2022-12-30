@@ -3,10 +3,9 @@ package com.adrianbutler.madcloud.game;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,9 +33,9 @@ public class GameOver extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_game_over);
 		scoreBoard = findViewById(R.id.scoreboard_btn);
 		homeButton = findViewById(R.id.home_button);
@@ -106,3 +105,5 @@ public class GameOver extends AppCompatActivity
 			});
 		});
 	}
+
+}
