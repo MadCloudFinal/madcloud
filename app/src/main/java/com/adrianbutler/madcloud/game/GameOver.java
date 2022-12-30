@@ -2,6 +2,7 @@ package com.adrianbutler.madcloud.game;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.adrianbutler.madcloud.MainActivity;
 import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.leaderboard.LeaderboardActivity;
 import com.adrianbutler.madcloud.utils.ads.AdManager;
+import com.adrianbutler.madcloud.utils.api.GraphQLManager;
+import com.adrianbutler.madcloud.utils.auth.SharedPreferencesManager;
 
 public class GameOver extends AppCompatActivity {
     Button playAgain;
@@ -52,6 +55,18 @@ public class GameOver extends AppCompatActivity {
         });
 
         yourScore.setText(getIntent().getStringExtra("score"));
+
+        int score = Integer.parseInt(getIntent().getStringExtra("score"));
+
+        Log.i("GameOverActivity", "Saving user score");
+
+        SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(this);
+
+        sharedPreferencesManager.saveUserHighScore(score);
+
+        String userId = sharedPreferencesManager.getUserId();
+
+        GraphQLManager.updateUsersHighScore(userId, score);
     }
 
     public void uiThread() {
