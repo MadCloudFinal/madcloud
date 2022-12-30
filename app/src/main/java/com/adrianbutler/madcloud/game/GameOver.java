@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.adrianbutler.madcloud.MainActivity;
 import com.adrianbutler.madcloud.R;
-import com.adrianbutler.madcloud.ads.AdManager;
+import com.adrianbutler.madcloud.utils.ads.AdManager;
 
 public class GameOver extends AppCompatActivity {
     Button playAgain;

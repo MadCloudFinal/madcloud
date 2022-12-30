@@ -1,6 +1,5 @@
 package com.adrianbutler.madcloud.game;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -10,38 +9,32 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.adrianbutler.madcloud.ads.AdManager;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
+import com.adrianbutler.madcloud.utils.sound.SoundHelper;
 
 public class GameView extends SurfaceView implements Runnable {
 
     public Integer score;
 
+    SoundHelper sfx = new SoundHelper(getContext());
+
     // this checks if the game is being played
     volatile boolean isPlaying;
     int uiSize = 50;
 
-    private Player player;
+    private final Player player;
     Enemy[] birds;
     int difficulty = 5;
+
     Lightning[] lightning;
 
+
     //Drawing objects
-    private Paint paint;
-
-    public Integer getScore() {
-        return score;
-    }
-
+    private final Paint paint;
     private Canvas canvas;
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
 
     BackgroundView backgroundView;
-
-    Activity addActivity;
-    GameActivity gameActivity;
-    AdManager adManager;
-    GameOver gameOver;
 
     // this will track the gameThread
 
@@ -51,11 +44,6 @@ public class GameView extends SurfaceView implements Runnable {
     public GameView(Context context, int screenX, int screenY, GameActivity gameActivity) {
         super(context);
         setLayerType(LAYER_TYPE_HARDWARE, null);
-
-        adManager = new AdManager(context, false);
-        addActivity = (Activity) context;
-
-        this.gameActivity = gameActivity;
 
 
         score = 0;
@@ -80,13 +68,13 @@ public class GameView extends SurfaceView implements Runnable {
 
     @Override
     public void run() {
-
         //this is our game loop
         while (isPlaying) {
 
             for (int i = 0; i < difficulty; i++) {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
+                    sfx.triggerSFX("owl");
                     birds[i].setX(-300);
 
                     Intent intent = new Intent(getContext(), GameOver.class);
@@ -111,13 +99,13 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void update() {
-
         //Update the players position
         player.update();
         for (int i = 0; i < (difficulty - 2); i++) {
             lightning[i].update();
             if (Rect.intersects(player.getHitbox(), lightning[i].getHitbox())) {
                 score += 5;
+                sfx.triggerSFX("strike");
                 lightning[i].setX(-200);
             }
         }
@@ -160,7 +148,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void control() {
         try {
-            gameThread.sleep(20);
+            gameThread.sleep(17);
 
         } catch (InterruptedException event) {
             event.printStackTrace();
@@ -175,7 +163,7 @@ public class GameView extends SurfaceView implements Runnable {
 //            gameThread.join();
 //        }catch (InterruptedException exception){}
 
-    }
+        }
 
     public void resume() {
         isPlaying = true;
