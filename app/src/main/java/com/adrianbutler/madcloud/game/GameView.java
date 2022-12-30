@@ -84,10 +84,14 @@ public class GameView extends SurfaceView implements Runnable {
                     try
                     {
                         gameThread.join();
+
                     } catch (InterruptedException e)
                     {
                         e.printStackTrace();
                     }
+
+                    gameThread = null;
+                    return;
                 }
             }
             //updates the frame
