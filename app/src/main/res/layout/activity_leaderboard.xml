@@ -4,36 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/leader_board"
     android:theme="@style/Theme.Design.Light.NoActionBar"
     tools:context=".leaderboard.LeaderboardActivity">
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sky_lightened" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/glacial_mountains_lightened" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="500dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud_lonely" />
 
     <TextView
         android:id="@+id/LeaderboardHeaderTextView"

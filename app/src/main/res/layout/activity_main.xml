@@ -4,25 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_page"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sky_lightened" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/glacial_mountains_lightened" />
 
     <TextView
         android:id="@+id/textView"
