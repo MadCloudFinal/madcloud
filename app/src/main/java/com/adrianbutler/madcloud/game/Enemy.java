@@ -67,9 +67,9 @@ public class Enemy{
         minY = uiSize;
         minX = 0;
 
-        hitbox = new Rect(x, y, enemyBit[1].getWidth(), enemyBit[1].getHeight());
+        hitbox = new Rect(x, y, enemyBit[0].getWidth(), enemyBit[0].getHeight());
         speed = random.nextInt(7) + 10;
-        y = random.nextInt(maxY) - enemyBit[1].getHeight();
+        y = random.nextInt(maxY) - enemyBit[0].getHeight();
         x = screenX;
 
 
