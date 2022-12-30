@@ -32,13 +32,31 @@ public class GraphQLManager
 				.highScore(0)
 				.build();
 
+		CountDownLatch latch = new CountDownLatch(1);
+
 		Amplify.API.mutate(
 				ModelMutation.create(newUser),
 				success ->
-						Log.i(TAG, "Successfully created User with name: " + name),
+				{
+					Log.i(TAG, "Successfully created User with name: " + name);
+
+					latch.countDown();
+				},
 				failure ->
-						Log.w(TAG, "Failed to create User with name: " + name)
+				{
+					Log.w(TAG, "Failed to create User with name: " + name);
+
+					latch.countDown();
+				}
 		);
+
+		try
+		{
+			latch.await();
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 
 		return newUser.getId();
 	}
