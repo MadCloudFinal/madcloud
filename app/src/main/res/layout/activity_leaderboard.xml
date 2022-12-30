@@ -31,7 +31,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginBottom="-1dp"
         android:background="#B9C3C8"
-        android:padding="8dp"
+        android:padding="0dp"
         android:textAlignment="center"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,5 +39,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LeaderboardHeaderTextView"
         app:layout_constraintVertical_bias="0.714"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/flyRaven"
+        android:layout_width="250px"
+        android:layout_height="280px"
+        android:layout_marginStart="288dp"
+        android:animation="@drawable/fly"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
