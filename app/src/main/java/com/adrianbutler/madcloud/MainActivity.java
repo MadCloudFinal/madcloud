@@ -123,10 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     // Enable the play button
                     goToGameBtn.setEnabled(true);
 
-                    // Save the inputted username to shared preferences
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("username", username);
-//                    editor.apply();
 
                     return true;
                 }
