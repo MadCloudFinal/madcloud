@@ -20,6 +20,7 @@ import com.adrianbutler.madcloud.game.GameActivity;
 import com.adrianbutler.madcloud.leaderboard.LeaderboardActivity;
 import com.adrianbutler.madcloud.utils.api.GraphQLManager;
 import com.adrianbutler.madcloud.utils.auth.SharedPreferencesManager;
+import com.adrianbutler.madcloud.utils.sound.AudioPlay;
 import com.adrianbutler.madcloud.utils.sound.SoundHelper;
 
 public class MainActivity extends AppCompatActivity
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
 		//fullscreen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		AudioPlay.playAudio(getApplicationContext(),R.raw.thunder_roll);
 
 		setContentView(R.layout.activity_main);
 
