@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity
 		// If a username is saved in shared preferences, display it in place of the EditText and TextView widgets
 		if (usernameReference[0] != null)
 		{
-
 			usernameInput.setVisibility(View.GONE);
 			usernamePrompt.setVisibility(View.GONE);
 			usernameDisplay.setText(usernameReference[0]);
@@ -144,6 +143,7 @@ public class MainActivity extends AppCompatActivity
 		goToStatsBtn.setOnClickListener(view ->
 		{
 			Intent goToStats = new Intent(this, LeaderboardActivity.class);
+			sfx.triggerSFX("magic");
 			startActivity(goToStats);
 		});
 
