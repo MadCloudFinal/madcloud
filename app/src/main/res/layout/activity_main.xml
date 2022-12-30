@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:scaleX="3.1"
         android:scaleY="3"
-        android:fontFamily="VT323"
+        android:fontFamily="@font/vt323font"
         android:text="@string/madcloud"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="34sp"
@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
         android:text="Enter your username:"
-
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +41,7 @@
     <EditText
         android:id="@+id/username_input"
         android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="36dp"
         android:imeOptions="actionDone"
         android:maxLength="15"
