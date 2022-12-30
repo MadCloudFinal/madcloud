@@ -4,9 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/glacial_mountains_lightened"
-    android:rotationX="3"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sky_lightened" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/glacial_mountains_lightened" />
 
     <TextView
         android:id="@+id/textView"
@@ -113,12 +129,12 @@
 
     <ImageView
         android:id="@+id/flyRaven"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_width="250px"
         android:layout_height="280px"
         android:layout_marginStart="16dp"
         android:animation="@drawable/fly"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
