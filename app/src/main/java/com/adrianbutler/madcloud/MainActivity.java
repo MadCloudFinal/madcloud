@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
         AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
         //Start the animation:
         animation.start();
+
+        //cloud
+        ImageView cloudFly = (ImageView) findViewById(R.id.cloudFly);
+        cloudFly.setBackgroundResource(R.drawable.cloudfly);
+        AnimationDrawable animation1 = (AnimationDrawable) cloudFly.getBackground();
+        //Start the animation:
+        animation1.start();
     }
 
     @Override

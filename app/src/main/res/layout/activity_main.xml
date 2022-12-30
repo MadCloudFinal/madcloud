@@ -116,15 +116,26 @@
         android:id="@+id/flyRaven"
         android:layout_width="250px"
         android:layout_height="280px"
-        android:layout_marginStart="16dp"
 
 
+        android:layout_marginEnd="60dp"
         android:animation="@drawable/fly"
-        app:layout_constraintBottom_toBottomOf="parent"
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <ImageView
+        android:id="@+id/cloudFly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.494"
+        app:srcCompat="@drawable/cloudfly" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
