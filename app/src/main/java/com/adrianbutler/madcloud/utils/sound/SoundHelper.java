@@ -19,7 +19,7 @@ public class SoundHelper {
     private SoundPool soundPool = null;
     private final int rcv_id = -1;
 	private final int snd_id = -1;
-    private int keyA, keyB, keyC, keyD;
+    private int keyA, keyB, keyC, keyD, keyE;
 
 
     public SoundHelper get(Context context) {
@@ -86,6 +86,15 @@ public class SoundHelper {
                 if (fxArray[1] != -1) {
                     float volume = getVolume();
                     soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+
+//                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "crow vol:" + volume);
+                    break;
+                }
+            case "raven":
+                if (fxArray[1] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[1], volume, volume, 1, 0, 0.6f);
 
 //                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
                     Log.e(TAG, "crow vol:" + volume);
