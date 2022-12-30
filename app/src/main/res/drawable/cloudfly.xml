@@ -1,0 +1,12 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected" android:oneshot="false">
+    <item android:drawable="@drawable/cloud" android:duration="100" />
+    <item android:drawable="@drawable/cloud_2" android:duration="100" />
+    <!--    <item android:drawable="@drawable/raven_black0003" android:duration="100" />-->
+    <item android:drawable="@drawable/cloud_3" android:duration="100" />
+    <!--    <item android:drawable="@drawable/raven_black0005" android:duration="100" />-->
+    <item android:drawable="@drawable/cloud_4" android:duration="100" />
+    <!--    <item android:drawable="@drawable/raven_black0007" android:duration="100" />-->
+    <item android:drawable="@drawable/cloud_5" android:duration="100" />
+
+</animation-list>
