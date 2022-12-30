@@ -138,8 +138,6 @@ public class MainActivity extends AppCompatActivity
 			Intent goToGame = new Intent(this, GameActivity.class);
 			sfx.triggerSFX("crow");
 			startActivity(goToGame);
-
-			finishAndRemoveTask();
 		});
 
 		Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
