@@ -12,16 +12,28 @@ import com.adrianbutler.madcloud.R;
 
 public class Player {
 
+
     private Bitmap[] playerAnimation;  // Array to store the series of images
     private int currentFrame;   // Index of the current frame in the animation
 
     private Rect hitbox;
     private int uiSize = 50;
 
-    private int x;
+    private final Bitmap bitmap;
+     private final Rect hitbox;
+     private final int uiSize = 50;
+
+    private final Bitmap[] playerAnimation = new Bitmap[5];
+
+    public Bitmap[] getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+
+    private final int x;
     private int y;
-    private int maxY;
-    private int minY;
+    private final int maxY;
+    private final int minY;
 
     private int speed = 0;
 

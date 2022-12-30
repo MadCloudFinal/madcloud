@@ -16,8 +16,12 @@ import java.util.Random;
 
 public class Enemy{
 
+
     private Bitmap[] enemyBit;  // Array to store the series of images
     private int currentFrame;   // Index of the current frame in the animation
+
+    private final Bitmap enemyBit;
+
 
     int x, y;
     int speed = 1;
