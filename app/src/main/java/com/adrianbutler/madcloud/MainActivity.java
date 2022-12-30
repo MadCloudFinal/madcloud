@@ -1,8 +1,10 @@
 package com.adrianbutler.madcloud;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity
 		//fullscreen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		AudioPlay.playAudio(getApplicationContext(),R.raw.thunder_roll);
+//		AudioPlay.playAudio(getApplicationContext(),R.raw.thunder_roll);
 
 		setContentView(R.layout.activity_main);
 
@@ -67,13 +70,36 @@ public class MainActivity extends AppCompatActivity
 		});
 
 		animation.start();
+
+		SeekBar volumeSeekBar = findViewById(R.id.seekBarVol);
+		volumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+				int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+				float volume = (float) progress / (float) maxVolume;
+				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// Do nothing
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// Do nothing
+			}
+		});
 	}
 
 	@Override
 	protected void onPause()
 	{
 		super.onPause();
-		AudioPlay.stopAudio();
+		if(AudioPlay.isplayingAudio){
+			AudioPlay.stopAudio();
+		}
 	}
 
 	public void setupTitleButtons()
