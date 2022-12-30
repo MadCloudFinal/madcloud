@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity
 		Button quitBtn = findViewById(R.id.TitleQuitBtn);
 		quitBtn.setOnClickListener(view ->
 		{
+			sfx.triggerSFX("quit");
 			Toast.makeText(this, "Quitting!", Toast.LENGTH_SHORT).show();
 			finishAndRemoveTask();
 			System.exit(0);
