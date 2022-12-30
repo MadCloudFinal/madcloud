@@ -1,6 +1,6 @@
-package com.adrianbutler.madcloud.auth;
+package com.adrianbutler.madcloud.utils.auth;
 
-import static android.content.SharedPreferences.*;
+import static android.content.SharedPreferences.Editor;
 
 import android.content.Context;
 import android.content.SharedPreferences;

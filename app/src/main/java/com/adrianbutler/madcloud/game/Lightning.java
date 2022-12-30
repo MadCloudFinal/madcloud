@@ -10,7 +10,7 @@ import com.adrianbutler.madcloud.R;
 import java.util.Random;
 
 public class Lightning {
-    private Bitmap lightningBit;
+    private final Bitmap lightningBit;
     int x, y;
     int speed = 1;
     int maxY, minY;

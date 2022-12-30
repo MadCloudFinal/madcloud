@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.game.utils;
+package com.adrianbutler.madcloud.utils.sound;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,11 +14,12 @@ public class SoundHelper {
     private final String TAG = "SoundHelper";
     int[] fxArray;
     private final int POOL_MAX = 10;
-    private Context mContext;
+    private final Context mContext;
     private static SoundHelper soundHelper;
     private SoundPool soundPool = null;
-    private int rcv_id = -1, snd_id = -1;
-    private int keyA, keyB, keyC, keyD;
+    private final int rcv_id = -1;
+	private final int snd_id = -1;
+    private int keyA, keyB, keyC, keyD, keyE;
 
 
     public SoundHelper get(Context context) {
@@ -85,6 +86,15 @@ public class SoundHelper {
                 if (fxArray[1] != -1) {
                     float volume = getVolume();
                     soundPool.play(fxArray[1], volume, volume, 1, 0, 1f);
+
+//                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
+                    Log.e(TAG, "crow vol:" + volume);
+                    break;
+                }
+            case "raven":
+                if (fxArray[1] != -1) {
+                    float volume = getVolume();
+                    soundPool.play(fxArray[1], volume, volume, 1, 0, 0.6f);
 
 //                    soundPool.play(fxArray[3], volume, volume, 1, 0, 1f);
                     Log.e(TAG, "crow vol:" + volume);

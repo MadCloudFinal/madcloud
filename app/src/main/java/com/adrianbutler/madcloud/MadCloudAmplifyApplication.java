@@ -10,6 +10,7 @@ import com.amplifyframework.core.Amplify;
 public class MadCloudAmplifyApplication extends Application
 {
 	public static final String TAG = "MadCloudAmplifyApplication";
+
 	@Override
 	public void onCreate()
 	{
@@ -20,8 +21,7 @@ public class MadCloudAmplifyApplication extends Application
 			Amplify.addPlugin(new AWSApiPlugin());
 			Amplify.configure(getApplicationContext());
 			Log.i(TAG, "Initialized Amplify successfully");
-		}
-		catch (AmplifyException amplifyException)
+		} catch (AmplifyException amplifyException)
 		{
 			Log.e(TAG, "Failed to initialize Amplify: " + amplifyException);
 		}
