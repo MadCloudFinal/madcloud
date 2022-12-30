@@ -126,18 +126,21 @@ public class Enemy{
     }
 
     public int getMaxY() {
-
-            return minY;
-        }
-
-        public int getMaxX() {
-            return maxX;
-        }
-
-        public int getMinX() {
-            return minX;
-        }
+        return maxY;
     }
+
+    public int getMinY() {
+        return minY;
+    }
+
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public int getMinX() {
+        return minX;
+    }
+}
 
 
 //    int x, y;

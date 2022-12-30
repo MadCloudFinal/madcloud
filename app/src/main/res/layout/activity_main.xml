@@ -4,37 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/glacial_mountains_lightened"
-    android:rotationX="3"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sky_lightened" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/glacial_mountains_lightened" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/vt323font"
+        android:scaleX="3.1"
+        android:scaleY="3"
         android:text="@string/madcloud"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="34sp"
+        app:fontFamily="@font/vt323"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/soundFXBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/fx"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!--    <ImageView -->
-    <!--        android:animation="@drawable/fly" -->
-    <!--        />-->
 
     <TextView
         android:id="@+id/username_prompt"
@@ -52,11 +57,12 @@
     <EditText
         android:id="@+id/username_input"
         android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="36dp"
         android:imeOptions="actionDone"
         android:maxLength="15"
         android:visibility="visible"
+        app:fontFamily="@font/vt323"
         app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -66,21 +72,24 @@
         android:id="@+id/username_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="34sp"
-        android:textStyle="bold"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="24sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/TitlePlayBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <Button
         android:id="@+id/TitlePlayBtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:enabled="false"
+        android:shadowColor="#B2B4B6"
+        android:shadowRadius="16"
         android:text="Play"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/TitleQuitBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,12 +97,14 @@
 
     <Button
         android:id="@+id/TitleQuitBtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:background="@drawable/custom_button"
-        android:enabled="true"
+        android:layout_marginTop="154dp"
+        android:shadowColor="#B2B4B6"
+        android:shadowRadius="16"
         android:text="@string/quit"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/flyRaven"
@@ -102,40 +113,44 @@
 
     <Button
         android:id="@+id/TitleStatsBtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="148dp"
+        android:shadowColor="#B2B4B6"
+        android:shadowRadius="16"
         android:text="@string/stats"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/flyRaven"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleQuitBtn" />
 
     <ImageView
         android:id="@+id/flyRaven"
         android:layout_width="250px"
         android:layout_height="280px"
-
-
-        android:layout_marginEnd="60dp"
+        android:layout_marginStart="16dp"
         android:animation="@drawable/fly"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48" />
-
-    <ImageView
-        android:id="@+id/cloudFly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494"
-        app:srcCompat="@drawable/cloudfly" />
+        app:layout_constraintVertical_bias="0.43" />
+
+    <SeekBar
+        android:id="@+id/seekBarVol"
+        android:layout_width="144dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="244dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
