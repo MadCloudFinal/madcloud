@@ -54,18 +54,20 @@ public class MainActivity extends AppCompatActivity
 
 		setupTitleButtons();
 
-		ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
-		ravenFly.setBackgroundResource(R.drawable.fly);
-		AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
+        //raven
+        ImageView ravenFly = (ImageView) findViewById(R.id.flyRaven);
+        ravenFly.setBackgroundResource(R.drawable.fly);
+        AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
+        //Start the animation:
+        animation.start();
 
-		ravenFly.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View v) {
-				sfx.triggerSFX("raven");
-			}
-		});
-
-		animation.start();
-	}
+        //cloud
+        ImageView cloudFly = (ImageView) findViewById(R.id.cloudFly);
+        cloudFly.setBackgroundResource(R.drawable.cloudfly);
+        AnimationDrawable animation1 = (AnimationDrawable) cloudFly.getBackground();
+        //Start the animation:
+        animation1.start();
+    }
 
 	@Override
 	protected void onPause()
