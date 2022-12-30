@@ -151,7 +151,6 @@ public class GameView extends SurfaceView implements Runnable
 			//unlocks the canvas
 			surfaceHolder.unlockCanvasAndPost(canvas);
 		}
-
 	}
 
 

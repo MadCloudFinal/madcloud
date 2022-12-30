@@ -33,10 +33,13 @@ public class GameOver extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		//orient
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.activity_game_over);
+
 		scoreBoard = findViewById(R.id.scoreboard_btn);
 		homeButton = findViewById(R.id.home_button);
 		yourScore = findViewById(R.id.score_text);

@@ -47,7 +47,6 @@ public class GameActivity extends AppCompatActivity {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT);
-
         params.topMargin = 0;
         params.gravity = Gravity.TOP | Gravity.END;
 
