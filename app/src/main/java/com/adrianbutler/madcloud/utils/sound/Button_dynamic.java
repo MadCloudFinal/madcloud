@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.game.utils;
+package com.adrianbutler.madcloud.utils.sound;
 
 public class Button_dynamic {
 }

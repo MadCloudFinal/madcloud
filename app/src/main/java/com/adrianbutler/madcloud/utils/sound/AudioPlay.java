@@ -1,4 +1,4 @@
-package com.adrianbutler.madcloud.game.utils;
+package com.adrianbutler.madcloud.utils.sound;
 
 import android.content.Context;
 import android.media.AudioManager;

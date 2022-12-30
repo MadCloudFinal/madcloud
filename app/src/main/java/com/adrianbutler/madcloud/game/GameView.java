@@ -1,6 +1,7 @@
 package com.adrianbutler.madcloud.game;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -12,8 +13,10 @@ import com.adrianbutler.madcloud.game.background.BackgroundView;
 import com.adrianbutler.madcloud.utils.sound.SoundHelper;
 
 public class GameView extends SurfaceView implements Runnable {
+
+    public Integer score;
+
     SoundHelper sfx = new SoundHelper(getContext());
-    int score;
 
     // this checks if the game is being played
     volatile boolean isPlaying;
@@ -33,15 +36,15 @@ public class GameView extends SurfaceView implements Runnable {
 
     BackgroundView backgroundView;
 
-
     // this will track the gameThread
-    private Thread gameThread = null;
 
-    public GameView(Context context, int screenX, int screenY) {
+    Thread gameThread = null;
+    Thread addThread;
+
+    public GameView(Context context, int screenX, int screenY, GameActivity gameActivity) {
         super(context);
         setLayerType(LAYER_TYPE_HARDWARE, null);
 
-        System.out.println(isHardwareAccelerated());
 
         score = 0;
 
@@ -49,12 +52,10 @@ public class GameView extends SurfaceView implements Runnable {
         birds = new Enemy[difficulty];
         lightning = new Lightning[difficulty - 2];
 
-
         // these are our initialized drawing objects
         surfaceHolder = getHolder();
         paint = new Paint();
         backgroundView = new BackgroundView(context);
-
 
         for (int i = 0; i < (difficulty - 2); i++) {
             lightning[i] = new Lightning(context, screenX, screenY);
@@ -73,9 +74,20 @@ public class GameView extends SurfaceView implements Runnable {
             for (int i = 0; i < difficulty; i++) {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
-//                 sfx.playCrow();
                     sfx.triggerSFX("owl");
                     birds[i].setX(-300);
+
+                    Intent intent = new Intent(getContext(), GameOver.class);
+                    intent.putExtra("score", score.toString());
+                    getContext().startActivity(intent);
+
+                    try
+                    {
+                        gameThread.join();
+                    } catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
             //updates the frame
@@ -106,13 +118,12 @@ public class GameView extends SurfaceView implements Runnable {
             // locks our canvas
             canvas = surfaceHolder.lockCanvas();
 
-
-            backgroundView.draw(canvas);
-//             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
-//             canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
+//            backgroundView.draw(canvas);
+             canvas.drawBitmap(backgroundView.getSky(), 0,0,null);
+             canvas.drawBitmap(backgroundView.getMountain(),0,0, null);
 
             paint.setTextSize(40);
-            canvas.drawText("Score - " + score, 100, 50, paint);
+            canvas.drawText("Score " + score, 100, 50, paint);
 
             canvas.drawBitmap(player.getBitmap(), player.getX(), player.getY(), paint);
 
@@ -122,7 +133,6 @@ public class GameView extends SurfaceView implements Runnable {
             for (int i = 0; i < (difficulty - 2); i++) {
                 canvas.drawBitmap(lightning[i].getLightningBit(), lightning[i].getX(), lightning[i].getY(), paint);
             }
-
             //unlocks the canvas
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -138,7 +148,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void control() {
         try {
-            Thread.sleep(17);
+            gameThread.sleep(17);
 
         } catch (InterruptedException event) {
             event.printStackTrace();
@@ -148,14 +158,12 @@ public class GameView extends SurfaceView implements Runnable {
     public void stopped() {
         //when the game is paused or when the player dies stop the thread
         isPlaying = false;
-        try {
-            //stop thread logic
-            gameThread.join();
 
-        } catch (InterruptedException event) {
+//        try {
+//            gameThread.join();
+//        }catch (InterruptedException exception){}
 
         }
-    }
 
     public void resume() {
         isPlaying = true;
@@ -169,7 +177,6 @@ public class GameView extends SurfaceView implements Runnable {
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-
             case MotionEvent.ACTION_UP:
                 // stops floating when released
                 player.stopFloating();

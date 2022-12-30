@@ -2,9 +2,7 @@ package com.adrianbutler.madcloud.game;
 
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -17,19 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.adrianbutler.madcloud.R;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
-import com.adrianbutler.madcloud.game.utils.AudioPlay;
+import com.adrianbutler.madcloud.utils.sound.AudioPlay;
 
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     BackgroundView backgroundView;
 
-//    RelativeLayout relativeLayout = findViewById(R.id.game_view);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -44,17 +39,15 @@ public class GameActivity extends AppCompatActivity {
         display.getSize(size);
 
 
-//        relativeLayout.addView(new GameView(this, size.x, size.y));
-//        relativeLayout.addView(new BackgroundView(this));
+        gameView = new GameView(this, size.x, size.y, GameActivity.this);
 
-        gameView = new GameView(this, size.x, size.y);
-//        setContentView(R.layout.game_rel);
         setContentView(gameView);
 
         Button button = new Button(this);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT);
+
         params.topMargin = 0;
         params.gravity = Gravity.TOP | Gravity.RIGHT;
 
@@ -75,7 +68,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
