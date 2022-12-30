@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 import com.adrianbutler.madcloud.ads.AdManager;
 import com.adrianbutler.madcloud.game.background.BackgroundView;
@@ -15,7 +16,9 @@ import com.adrianbutler.madcloud.game.background.BackgroundView;
 import java.util.concurrent.CountDownLatch;
 
 public class GameView extends SurfaceView implements Runnable {
-    int score;
+
+    public int score;
+
     // this checks if the game is being played
     volatile boolean isPlaying;
     int uiSize = 50;
@@ -27,6 +30,11 @@ public class GameView extends SurfaceView implements Runnable {
 
     //Drawing objects
     private Paint paint;
+
+    public int getScore() {
+        return score;
+    }
+
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
 
@@ -35,20 +43,21 @@ public class GameView extends SurfaceView implements Runnable {
     Activity addActivity;
     GameActivity gameActivity;
     AdManager adManager;
+    GameOver gameOver;
 
     // this will track the gameThread
-    private Thread gameThread = null;
+
+    Thread gameThread = null;
     Thread addThread;
 
-    public GameView(Context context, int screenX, int screenY) {
+    public GameView(Context context, int screenX, int screenY, GameActivity gameActivity) {
         super(context);
         setLayerType(LAYER_TYPE_HARDWARE, null);
 
         adManager = new AdManager(context, false);
         addActivity = (Activity) context;
 
-        gameActivity = new GameActivity();
-
+        this.gameActivity = gameActivity;
 
 
         score = 0;
@@ -81,7 +90,7 @@ public class GameView extends SurfaceView implements Runnable {
                 birds[i].update();
                 if (Rect.intersects(player.getHitbox(), birds[i].getHitbox())) {
                     birds[i].setX(-300);
-                    stopped();
+                    gameActivity.uiThread();
                 }
             }
             //updates the frame
@@ -153,23 +162,10 @@ public class GameView extends SurfaceView implements Runnable {
         //when the game is paused or when the player dies stop the thread
         isPlaying = false;
 
-        try {
-            //stop thread logic
-
-            addThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    gameActivity.uiThread();
-                }
-            });
-
-            addThread.start();
-            addThread.join();
-//            gameThread.start();
+//        try {
 //            gameThread.join();
+//        }catch (InterruptedException exception){}
 
-
-        }catch (InterruptedException exception){}
     }
 
     public void resume() {

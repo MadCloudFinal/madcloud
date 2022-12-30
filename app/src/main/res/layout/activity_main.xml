@@ -16,6 +16,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/madcloud"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toStartOf="parent"
