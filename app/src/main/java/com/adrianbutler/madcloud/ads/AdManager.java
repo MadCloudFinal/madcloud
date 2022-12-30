@@ -69,7 +69,7 @@ public class AdManager
 				super.onAdLoaded(rewardedAd);
 				setRewardedAd(rewardedAd);
 
-				Log.i(TAG, "Loaded interstitial ad successfully");
+				Log.i(TAG, "Loaded rewarded ad successfully");
 
 				adLoadCallback.run();
 			}
