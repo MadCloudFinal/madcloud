@@ -48,6 +48,8 @@ public class GameOver extends AppCompatActivity
 		{
 			Intent intent = new Intent(GameOver.this, GameActivity.class);
 			startActivity(intent);
+
+			finishAndRemoveTask();
 		});
 
 
@@ -55,6 +57,8 @@ public class GameOver extends AppCompatActivity
 		{
 			Intent intent = new Intent(GameOver.this, MainActivity.class);
 			startActivity(intent);
+
+			finishAndRemoveTask();
 		});
 
 		yourScore.setText(getIntent().getStringExtra("score"));

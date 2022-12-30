@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity
 			Intent goToGame = new Intent(this, GameActivity.class);
 			sfx.triggerSFX("crow");
 			startActivity(goToGame);
+
+			finishAndRemoveTask();
 		});
 
 		Button goToStatsBtn = findViewById(R.id.TitleStatsBtn);
@@ -146,6 +148,7 @@ public class MainActivity extends AppCompatActivity
 		{
 			Toast.makeText(this, "Quitting!", Toast.LENGTH_SHORT).show();
 			finishAndRemoveTask();
+			System.exit(0);
 		});
 	}
 }
