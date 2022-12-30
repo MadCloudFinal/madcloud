@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity
 		ravenFly.setBackgroundResource(R.drawable.fly);
 		AnimationDrawable animation = (AnimationDrawable) ravenFly.getBackground();
 
+		ravenFly.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v) {
+				sfx.triggerSFX("raven");
+			}
+		});
+
 		animation.start();
 	}
 
